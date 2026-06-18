@@ -3,2171 +3,758 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Nolan Koch — CS & Cybersecurity student, AI researcher, and builder of LLM systems, ML models, and AI-powered automation.">
     <meta http-equiv="X-Content-Type-Options" content="nosniff">
-    <meta http-equiv="X-Frame-Options" content="DENY">
-    <meta http-equiv="X-XSS-Protection" content="1; mode=block">
     <meta http-equiv="Referrer-Policy" content="strict-origin-when-cross-origin">
     <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://cdnjs.cloudflare.com; style-src 'self' 'unsafe-inline' https://cdnjs.cloudflare.com https://fonts.googleapis.com; font-src 'self' https://cdnjs.cloudflare.com https://fonts.gstatic.com; img-src 'self' data: blob:; connect-src 'self';">
-    <title>Nolan Koch - Portfolio</title>
-    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90' font-family='monospace' font-weight='bold' fill='white'>NK</text></svg>">
+    <title>Nolan Koch — AI Builder & CS Student</title>
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><defs><linearGradient id='g' x1='0' y1='0' x2='1' y2='1'><stop offset='0' stop-color='%23be9de9'/><stop offset='1' stop-color='%23a75eff'/></linearGradient></defs><rect width='100' height='100' rx='24' fill='url(%23g)'/><text x='50' y='74' font-size='64' font-family='Georgia,serif' font-weight='700' fill='white' text-anchor='middle'>N</text></svg>">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet" crossorigin="anonymous">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" crossorigin="anonymous">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400;1,500&family=Figtree:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" crossorigin="anonymous">
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
 
         :root {
-            --bg-primary: #0A1828;
-            --bg-secondary: #0f2338;
-            --bg-tertiary: #1a2f4a;
-            --text-primary: #ffffff;
-            --text-secondary: #e2e8f0;
-            --accent: #BFA181;
-            --accent-secondary: #178582;
-            --accent-hover: #d4b89a;
-            --border: rgba(191, 161, 129, 0.2);
-            --shadow: 0 4px 20px rgba(10, 24, 40, 0.6);
-            --shadow-hover: 0 8px 30px rgba(10, 24, 40, 0.8);
+            /* Wispr Flow palette */
+            --bg: #ffffeb;            /* lumen (warm cream) */
+            --bg-soft: #f5efdd;       /* warm cream, soft sections */
+            --bg-card: #fffef7;       /* warm white card */
+            --dawn: #f0d7ff;          /* lavender */
+            --glow: #ffa946;          /* warm orange */
+            --pulse: #7f1c34;         /* burgundy */
+            --ink: #1a1a1a;           /* vast (near-black) */
+            --ink-soft: rgba(26, 26, 26, 0.66);
+            --ink-faint: rgba(26, 26, 26, 0.46);
+            --brand: #034f46;         /* fathom (deep teal) */
+            --brand-2: #a75eff;       /* purple */
+            --brand-3: #f0d7ff;       /* dawn */
+            --gradient: linear-gradient(120deg, #be9de9 0%, #a75eff 100%);
+            --gradient-soft: linear-gradient(120deg, rgba(167,94,255,0.14), rgba(240,215,255,0.55));
+            --border: rgba(26, 26, 26, 0.1);
+            --border-strong: rgba(26, 26, 26, 0.16);
+            --shadow-sm: 0 1px 3px rgba(26, 26, 26, 0.06), 0 10px 26px rgba(26, 26, 26, 0.06);
+            --shadow-lg: 0 16px 44px rgba(26, 26, 26, 0.14);
+            --font-display: 'EB Garamond', Georgia, 'Times New Roman', serif;
+            --font-body: 'Figtree', -apple-system, BlinkMacSystemFont, sans-serif;
+            --radius: 22px;
+            --maxw: 1160px;
         }
 
-        html {
-            scroll-behavior: smooth;
-        }
+        html { scroll-behavior: smooth; }
 
         body {
-            font-family: 'Inter', sans-serif;
-            background: var(--bg-primary);
-            color: var(--text-primary);
+            font-family: var(--font-body);
+            background: var(--bg);
+            color: var(--ink);
             line-height: 1.6;
             overflow-x: hidden;
+            -webkit-font-smoothing: antialiased;
         }
 
-        /* Custom Scrollbar */
-        ::-webkit-scrollbar {
-            width: 8px;
+        /* Wispr-style serif display headings (EB Garamond) */
+        .hero h1, .section-title, .pc-title, .about h2, .cta h2, .av-quote, .hc-name {
+            font-family: var(--font-display);
         }
 
-        ::-webkit-scrollbar-track {
-            background: var(--bg-secondary);
-        }
-
-        ::-webkit-scrollbar-thumb {
-            background: linear-gradient(180deg, var(--accent), var(--accent-secondary));
-            border-radius: 4px;
-        }
-
-        /* Navigation */
-        .navbar {
-            position: fixed;
-            top: 0;
-            width: 100%;
-            background: rgba(10, 24, 40, 0.95);
-            backdrop-filter: blur(20px);
-            z-index: 1000;
-            padding: 1rem 0;
-            border-bottom: 1px solid var(--border);
-            box-shadow: var(--shadow);
-        }
-
-        .nav-container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 2rem;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .nav-logo {
-            font-family: 'Inter', sans-serif;
-            font-size: 1.5rem;
-            font-weight: 800;
-            color: var(--accent);
-            text-decoration: none;
-            letter-spacing: -0.5px;
-        }
-
-        .nav-menu {
-            display: flex;
-            list-style: none;
-            gap: 2.5rem;
-        }
-
-        .nav-link {
-            color: var(--text-secondary);
-            text-decoration: none;
-            font-weight: 500;
-            font-size: 0.95rem;
-            transition: all 0.3s ease;
-            position: relative;
-        }
-
-        .nav-link:hover {
-            color: var(--accent);
-        }
-
-        .nav-link::after {
-            content: '';
-            position: absolute;
-            width: 0;
-            height: 2px;
-            bottom: 0;
-            left: 50%;
-            background: linear-gradient(90deg, var(--accent), var(--accent-secondary));
-            transition: all 0.3s ease;
-            transform: translateX(-50%);
-        }
-
-        .nav-link:hover::after {
-            width: 100%;
-        }
-
-        /* Hero Section */
-        .hero {
-            min-height: 100vh;
-            display: flex;
-            align-items: center;
-            background: linear-gradient(135deg, var(--bg-primary) 0%, var(--bg-secondary) 100%);
-            padding-top: 80px;
-        }
-
-        .hero-container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 2rem;
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 4rem;
-            align-items: center;
-        }
-
-        .hero-content {
-            position: relative;
-        }
-
-        .hero-greeting {
-            font-size: 1rem;
-            color: var(--accent);
-            margin-bottom: 1rem;
-            font-weight: 600;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-        }
-
-        .hero-title {
-            font-size: clamp(3rem, 6vw, 4.5rem);
-            font-weight: 800;
-            margin-bottom: 1.5rem;
-            line-height: 1.1;
-            color: var(--text-primary);
-            letter-spacing: -1px;
-        }
-
-        .hero-subtitle {
-            font-size: 1.25rem;
-            font-weight: 500;
-            margin-bottom: 2rem;
-            color: var(--text-secondary);
-            max-width: 500px;
-        }
-
-        .hero-description {
-            font-size: 1.1rem;
-            margin-bottom: 3rem;
-            color: var(--text-secondary);
-            line-height: 1.7;
-            max-width: 600px;
-        }
-
-        .hero-buttons {
-            display: flex;
-            gap: 1rem;
-            flex-wrap: wrap;
-        }
-
-        .btn {
-            padding: 0.875rem 2rem;
-            border-radius: 8px;
-            text-decoration: none;
-            font-weight: 600;
-            font-size: 0.95rem;
-            transition: all 0.3s ease;
-            display: inline-flex;
-            align-items: center;
-            gap: 0.5rem;
-            border: none;
-            cursor: pointer;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .btn-primary {
-            background: var(--accent);
-            color: white;
-            box-shadow: var(--shadow);
-        }
-
-        .btn-primary:hover {
-            background: var(--accent-hover);
-            transform: translateY(-2px);
-            box-shadow: var(--shadow-hover);
-        }
-
-        .btn-secondary {
-            background: transparent;
-            color: var(--accent);
-            border: 2px solid var(--accent);
-        }
-
-        .btn-secondary:hover {
-            background: var(--accent);
-            color: white;
-            transform: translateY(-2px);
-        }
-
-        .hero-visual {
-            position: relative;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-        }
-
-        .code-block {
-            background: var(--bg-secondary);
-            border: 1px solid var(--border);
-            border-radius: 12px;
-            padding: 2rem;
-            font-family: 'Monaco', 'Menlo', 'Ubuntu Mono', monospace;
-            font-size: 0.9rem;
-            line-height: 1.6;
-            position: relative;
-            max-width: 450px;
-            width: 100%;
-            box-shadow: var(--shadow);
-        }
-
-        .code-block::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            height: 40px;
-            background: var(--border);
-            border-radius: 12px 12px 0 0;
-        }
-
-        .code-line {
-            margin-bottom: 0.5rem;
-        }
-
-        .code-keyword {
-            color: var(--accent);
-        }
-
-        .code-string {
-            color: #28a745;
-        }
-
-        .code-comment {
-            color: var(--text-secondary);
-        }
-
-        /* Projects Section */
-        .projects {
-            padding: 6rem 0;
-            background: var(--bg-secondary);
-        }
-
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 2rem;
-        }
-
-        .section-header {
-            text-align: center;
-            margin-bottom: 4rem;
-        }
-
-        .section-title {
-            font-size: clamp(2.5rem, 5vw, 3.5rem);
-            font-weight: 800;
-            margin-bottom: 1rem;
-            color: var(--text-primary);
-            letter-spacing: -1px;
-        }
-
-        .section-subtitle {
-            font-size: 1.1rem;
-            color: var(--text-secondary);
-            max-width: 600px;
-            margin: 0 auto;
-            font-weight: 400;
-        }
-
-        .project-categories {
-            display: flex;
-            justify-content: center;
-            gap: 1rem;
-            margin-bottom: 3rem;
-            flex-wrap: wrap;
-        }
-
-        .category-btn {
-            padding: 0.75rem 1.5rem;
-            border: 2px solid var(--border);
-            border-radius: 25px;
-            background: rgba(10, 24, 40, 0.8);
-            color: var(--text-secondary);
-            font-weight: 500;
-            font-size: 0.9rem;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            white-space: nowrap;
-            position: relative;
-            overflow: hidden;
-            backdrop-filter: blur(10px);
-        }
-
-        .category-btn:hover {
-            color: var(--accent);
-            border-color: var(--accent);
-            transform: translateY(-1px);
-        }
-
-        .category-btn.active {
-            background: linear-gradient(135deg, var(--accent), var(--accent-secondary));
-            color: white;
-            border-color: var(--accent);
-        }
-
-        .project-showcase {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(380px, 1fr));
-            gap: 2rem;
-        }
-
-        .project-card {
-            background: white;
-            border: 1px solid var(--border);
-            border-radius: 12px;
-            overflow: hidden;
-            transition: all 0.3s ease;
-            box-shadow: var(--shadow);
-        }
-
-        .project-card:hover {
-            transform: translateY(-5px);
-            box-shadow: var(--shadow-hover);
-            border-color: var(--accent);
-        }
-
-        .project-header {
-            padding: 2rem 2rem 1.5rem 2rem;
-            border-bottom: 1px solid var(--border);
-        }
-
-        .project-icon {
-            width: 60px;
-            height: 60px;
-            background: var(--accent);
-            border-radius: 12px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin-bottom: 1.5rem;
-            color: white;
-            font-size: 1.5rem;
-        }
-
-        .project-title {
-            font-size: 1.5rem;
-            font-weight: 700;
-            color: var(--text-primary);
-            margin-bottom: 1rem;
-        }
-
-        .project-description {
-            font-size: 1rem;
-            color: var(--text-secondary);
-            line-height: 1.6;
-            margin-bottom: 1.5rem;
-        }
-
-        .project-tech {
-            display: flex;
-            gap: 0.5rem;
-            flex-wrap: wrap;
-        }
-
-        .tech-tag {
-            background: var(--bg-secondary);
-            color: var(--text-secondary);
-            padding: 0.4rem 0.8rem;
-            border-radius: 6px;
-            font-size: 0.8rem;
-            font-weight: 500;
-            border: 1px solid var(--border);
-        }
-
-        .project-footer {
-            padding: 1.5rem 2rem 2rem 2rem;
-        }
-
-        .project-links {
-            display: flex;
-            gap: 1rem;
-            justify-content: flex-start;
-        }
-
-        .project-link {
-            background: var(--accent);
-            color: white;
-            padding: 0.75rem 1.5rem;
-            border-radius: 8px;
-            text-decoration: none;
-            font-weight: 600;
-            font-size: 0.9rem;
-            transition: all 0.3s ease;
-            display: inline-flex;
-            align-items: center;
-            gap: 0.5rem;
-            border: none;
-        }
-
-        .project-link:hover {
-            background: var(--accent-hover);
-            transform: translateY(-1px);
-        }
-
-        /* About Section */
-        .about {
-            padding: 6rem 0;
-            background: var(--bg-tertiary);
-        }
-
-        .about-content {
-            max-width: 800px;
-            margin: 0 auto;
-            text-align: center;
-        }
-
-        .about-text {
-            font-size: 1.1rem;
-            line-height: 1.7;
-            color: var(--text-secondary);
-            margin-bottom: 1.5rem;
-        }
-
-        /* Contact Section */
-        .contact {
-            padding: 6rem 0;
-            background: var(--bg-primary);
-        }
-
-        .contact-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 2rem;
-            max-width: 900px;
-            margin: 0 auto;
-        }
-
-        .contact-item {
-            background: white;
-            border: 1px solid var(--border);
-            border-radius: 12px;
-            padding: 2rem;
-            text-align: center;
-            transition: all 0.3s ease;
-            box-shadow: var(--shadow);
-        }
-
-        .contact-item:hover {
-            border-color: var(--accent);
-            transform: translateY(-3px);
-            box-shadow: var(--shadow-hover);
-        }
-
-        .contact-item h3 {
-            margin-bottom: 1rem;
-            color: var(--text-primary);
-            font-weight: 700;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 0.5rem;
-        }
-
-        .contact-item p {
-            color: var(--text-secondary);
-        }
-
-        .contact-link {
-            color: var(--accent);
-            text-decoration: none;
-            transition: all 0.3s ease;
-            font-weight: 500;
-        }
-
-        .contact-link:hover {
-            color: var(--accent-hover);
-        }
-
-        .contact-item i {
-            color: var(--accent);
-            font-size: 1.2rem;
-        }
-
-        /* Responsive Design */
-        @media (max-width: 768px) {
-            .nav-menu {
-                display: none;
-            }
-
-            .hero-container {
-                grid-template-columns: 1fr;
-                text-align: center;
-                gap: 3rem;
-            }
-
-            .hero-buttons {
-                justify-content: center;
-            }
-
-            .code-block {
-                max-width: 100%;
-            }
-
-            .project-showcase {
-                grid-template-columns: 1fr;
-            }
-
-            .project-card {
-                margin: 0 1rem;
-            }
-
-            .project-links {
-                flex-direction: column;
-                gap: 0.75rem;
-            }
-
-            .project-link {
-                width: 100%;
-                justify-content: center;
-            }
-        }
-
-        /* Custom Animations */
-        @keyframes fadeInUp {
-            from {
-                opacity: 0;
-                transform: translateY(30px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        @keyframes slideInLeft {
-            from {
-                opacity: 0;
-                transform: translateX(-50px);
-            }
-            to {
-                opacity: 1;
-                transform: translateX(0);
-            }
-        }
-
-        @keyframes slideInRight {
-            from {
-                opacity: 0;
-                transform: translateX(50px);
-            }
-            to {
-                opacity: 1;
-                transform: translateX(0);
-            }
-        }
-
-        @keyframes float {
-            0%, 100% {
-                transform: translateY(0px);
-            }
-            50% {
-                transform: translateY(-10px);
-            }
-        }
-
-        @keyframes pulse {
-            0%, 100% {
-                transform: scale(1);
-            }
-            50% {
-                transform: scale(1.05);
-            }
-        }
-
-        @keyframes gradientShift {
-            0% {
-                background-position: 0% 50%;
-            }
-            50% {
-                background-position: 100% 50%;
-            }
-            100% {
-                background-position: 0% 50%;
-            }
-        }
-
-        .fade-in {
-            animation: fadeInUp 0.8s ease-out;
-        }
-
-        .slide-in-left {
-            animation: slideInLeft 0.8s ease-out;
-        }
-
-        .slide-in-right {
-            animation: slideInRight 0.8s ease-out;
-        }
-
-        .float {
-            animation: float 3s ease-in-out infinite;
-        }
-
-        .pulse {
-            animation: pulse 2s ease-in-out infinite;
-        }
-
-        /* Enhanced Hero Section */
-        .hero {
-            min-height: 100vh;
-            display: flex;
-            align-items: center;
-            background: linear-gradient(135deg, #0A1828 0%, #0f2338 25%, #1a2f4a 50%, #178582 75%, #0A1828 100%);
-            background-size: 400% 400%;
-            animation: gradientShift 20s ease infinite;
-            padding-top: 80px;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .hero::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: 
-                radial-gradient(circle at 20% 80%, rgba(191, 161, 129, 0.15) 0%, transparent 50%),
-                radial-gradient(circle at 80% 20%, rgba(23, 133, 130, 0.1) 0%, transparent 50%),
-                radial-gradient(circle at 40% 40%, rgba(23, 133, 130, 0.08) 0%, transparent 50%);
-            backdrop-filter: blur(10px);
-        }
-
-        .hero::after {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background-image: 
-                radial-gradient(2px 2px at 20px 30px, rgba(191, 161, 129, 0.3), transparent),
-                radial-gradient(2px 2px at 40px 70px, rgba(23, 133, 130, 0.3), transparent),
-                radial-gradient(1px 1px at 90px 40px, rgba(191, 161, 129, 0.3), transparent),
-                radial-gradient(1px 1px at 130px 80px, rgba(23, 133, 130, 0.3), transparent),
-                radial-gradient(2px 2px at 160px 30px, rgba(191, 161, 129, 0.3), transparent);
-            background-repeat: repeat;
-            background-size: 200px 100px;
-            animation: starfield 20s linear infinite;
-            opacity: 0.6;
-        }
+        ::-webkit-scrollbar { width: 10px; }
+        ::-webkit-scrollbar-track { background: var(--bg-soft); }
+        ::-webkit-scrollbar-thumb { background: var(--gradient); border-radius: 10px; border: 2px solid var(--bg-soft); }
 
-        @keyframes starfield {
-            0% {
-                transform: translateY(0px);
-            }
-            100% {
-                transform: translateY(-100px);
-            }
-        }
-
-        .hero-container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 2rem;
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 4rem;
-            align-items: center;
-            position: relative;
-            z-index: 2;
-        }
-
-        .hero-content {
-            position: relative;
-        }
-
-        .hero-greeting {
-            font-size: 1rem;
-            color: white;
-            margin-bottom: 1rem;
-            font-weight: 600;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            opacity: 0;
-            animation: slideInLeft 1s ease-out 0.5s forwards;
-        }
-
-        .hero-title {
-            font-size: clamp(3rem, 6vw, 4.5rem);
-            font-weight: 800;
-            margin-bottom: 1.5rem;
-            line-height: 1.1;
-            color: white;
-            letter-spacing: -1px;
-            opacity: 0;
-            animation: slideInLeft 1s ease-out 1s forwards;
-            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
-        }
-
-        .hero-subtitle {
-            font-size: 1.25rem;
-            font-weight: 500;
-            margin-bottom: 2rem;
-            color: rgba(255, 255, 255, 0.9);
-            max-width: 500px;
-            opacity: 0;
-            animation: slideInLeft 1s ease-out 1.5s forwards;
-        }
-
-        .hero-description {
-            font-size: 1.1rem;
-            margin-bottom: 3rem;
-            color: rgba(255, 255, 255, 0.8);
-            line-height: 1.7;
-            max-width: 600px;
-            opacity: 0;
-            animation: slideInLeft 1s ease-out 2s forwards;
-        }
-
-        .hero-buttons {
-            display: flex;
-            gap: 1rem;
-            flex-wrap: wrap;
-            opacity: 0;
-            animation: slideInLeft 1s ease-out 2.5s forwards;
-        }
-
-        .btn {
-            padding: 0.875rem 2rem;
-            border-radius: 8px;
-            text-decoration: none;
-            font-weight: 600;
-            font-size: 0.95rem;
-            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-            display: inline-flex;
-            align-items: center;
-            gap: 0.5rem;
-            border: none;
-            cursor: pointer;
-            position: relative;
-            overflow: hidden;
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
-        }
-
-        .btn::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
-            transition: left 0.5s ease;
-        }
-
-        .btn:hover::before {
-            left: 100%;
-        }
-
-        .btn-primary {
-            background: white;
-            color: var(--accent);
-            transform: translateY(0);
-        }
-
-        .btn-primary:hover {
-            background: var(--accent);
-            color: white;
-            transform: translateY(-3px) scale(1.05);
-            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
-        }
-
-        .btn-secondary {
-            background: transparent;
-            color: white;
-            border: 2px solid white;
-            backdrop-filter: blur(10px);
-        }
-
-        .btn-secondary:hover {
-            background: white;
-            color: var(--accent);
-            transform: translateY(-3px) scale(1.05);
-            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
-        }
-
-        .hero-visual {
-            position: relative;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            opacity: 0;
-            animation: slideInRight 1s ease-out 1.5s forwards;
-        }
-
-        .code-block {
-            background: rgba(255, 255, 255, 0.1);
-            border: 1px solid rgba(255, 255, 255, 0.2);
-            border-radius: 16px;
-            padding: 2rem;
-            font-family: 'Monaco', 'Menlo', 'Ubuntu Mono', monospace;
-            font-size: 0.9rem;
-            line-height: 1.6;
-            position: relative;
-            max-width: 450px;
-            width: 100%;
-            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
-            backdrop-filter: blur(20px);
-            transition: all 0.4s ease;
-        }
-
-        .code-block:hover {
-            transform: translateY(-10px) scale(1.02);
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
-        }
-
-        .code-block::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            height: 40px;
-            background: rgba(255, 255, 255, 0.2);
-            border-radius: 16px 16px 0 0;
-        }
-
-        .code-line {
-            margin-bottom: 0.5rem;
-            transition: all 0.3s ease;
-        }
-
-        .code-line:hover {
-            transform: translateX(5px);
-            color: white;
-        }
-
-        .code-keyword {
-            color: #BFA181;
-            font-weight: bold;
-        }
-
-        .code-string {
-            color: #178582;
-        }
-
-        .code-comment {
-            color: rgba(191, 161, 129, 0.8);
-            font-style: italic;
-        }
-
-        /* Enhanced Project Cards */
-        .project-card {
-            background: rgba(10, 24, 40, 0.8);
-            border: 1px solid var(--border);
-            border-radius: 16px;
-            overflow: hidden;
-            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-            box-shadow: var(--shadow);
-            position: relative;
-            backdrop-filter: blur(10px);
-        }
-
-        .project-card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            height: 4px;
-            background: linear-gradient(90deg, var(--accent), var(--accent-secondary), var(--accent));
-            transform: scaleX(0);
-            transition: transform 0.4s ease;
-        }
-
-        .project-card:hover::before {
-            transform: scaleX(1);
-        }
-
-        .project-card:hover {
-            transform: translateY(-10px) scale(1.02);
-            box-shadow: var(--shadow-hover);
-            border-color: var(--accent);
-        }
-
-        .project-icon {
-            width: 60px;
-            height: 60px;
-            background: linear-gradient(135deg, var(--accent), var(--accent-secondary));
-            border-radius: 16px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin-bottom: 1.5rem;
-            color: white;
-            font-size: 1.5rem;
-            transition: all 0.3s ease;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .project-icon::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
-            transition: left 0.5s ease;
-        }
-
-        .project-card:hover .project-icon::before {
-            left: 100%;
-        }
-
-        .project-card:hover .project-icon {
-            transform: rotate(5deg) scale(1.1);
-        }
-
-        .tech-tag {
-            background: var(--bg-secondary);
-            color: var(--text-secondary);
-            padding: 0.4rem 0.8rem;
-            border-radius: 20px;
-            font-size: 0.8rem;
-            font-weight: 500;
-            border: 1px solid var(--border);
-            transition: all 0.3s ease;
-            cursor: default;
-        }
-
-        .tech-tag:hover {
-            background: var(--accent);
-            color: white;
-            transform: translateY(-2px);
-            box-shadow: 0 4px 12px rgba(191, 161, 129, 0.3);
-        }
-
-        .project-link {
-            background: linear-gradient(135deg, var(--accent), var(--accent-secondary));
-            color: white;
-            padding: 0.75rem 1.5rem;
-            border-radius: 25px;
-            text-decoration: none;
-            font-weight: 600;
-            font-size: 0.9rem;
-            transition: all 0.3s ease;
-            display: inline-flex;
-            align-items: center;
-            gap: 0.5rem;
-            border: none;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .project-link::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
-            transition: left 0.5s ease;
-        }
-
-        .project-link:hover::before {
-            left: 100%;
-        }
-
-        .project-link:hover {
-            transform: translateY(-2px) scale(1.05);
-            box-shadow: 0 8px 25px rgba(191, 161, 129, 0.4);
-        }
-
-        /* Project Image Styles */
-        .project-image-container {
-            width: 100%;
-            height: 200px;
-            overflow: hidden;
-            border-radius: 8px;
-            margin-bottom: 1.5rem;
-            position: relative;
-            cursor: pointer;
-            background: var(--bg-tertiary);
-        }
-
-        .project-image {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            transition: all 0.4s ease;
-        }
-
-        .project-image-container:hover .project-image {
-            transform: scale(1.05);
-        }
-
-        .project-image-overlay {
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: rgba(10, 24, 40, 0.7);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            opacity: 0;
-            transition: all 0.3s ease;
-        }
-
-        .project-image-container:hover .project-image-overlay {
-            opacity: 1;
-        }
-
-        .project-image-overlay i {
-            color: white;
-            font-size: 2rem;
-        }
-
-        /* Lightbox Modal */
-        .lightbox-modal {
-            display: none;
-            position: fixed;
-            z-index: 2000;
-            left: 0;
-            top: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0, 0, 0, 0.95);
-            backdrop-filter: blur(10px);
-            animation: fadeIn 0.3s ease;
-        }
-
-        .lightbox-modal.active {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-
-        .lightbox-content {
-            max-width: 90%;
-            max-height: 90%;
-            position: relative;
-            animation: zoomIn 0.3s ease;
-        }
-
-        .lightbox-image {
-            width: 100%;
-            height: auto;
-            max-height: 90vh;
-            object-fit: contain;
-            border-radius: 8px;
-            box-shadow: 0 10px 50px rgba(0, 0, 0, 0.5);
-        }
-
-        .lightbox-close {
-            position: absolute;
-            top: -40px;
-            right: 0;
-            color: white;
-            font-size: 2rem;
-            cursor: pointer;
-            background: rgba(255, 255, 255, 0.1);
-            width: 40px;
-            height: 40px;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            transition: all 0.3s ease;
-        }
-
-        .lightbox-close:hover {
-            background: var(--accent);
-            transform: rotate(90deg);
-        }
-
-        @keyframes zoomIn {
-            from {
-                transform: scale(0.8);
-                opacity: 0;
-            }
-            to {
-                transform: scale(1);
-                opacity: 1;
-            }
-        }
-
-        /* Dual Image Layout */
-        .project-dual-images {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 0.75rem;
-            margin-bottom: 1.5rem;
-        }
-
-        .project-dual-images .project-image-container {
-            height: 150px;
-            margin-bottom: 0;
-        }
-
-        @media (max-width: 768px) {
-            .project-dual-images {
-                grid-template-columns: 1fr;
-            }
-            
-            .project-dual-images .project-image-container {
-                height: 200px;
-            }
-        }
-
-        /* Enhanced Contact Items */
-        .contact-item {
-            background: rgba(10, 24, 40, 0.8);
-            border: 1px solid var(--border);
-            border-radius: 16px;
-            padding: 2rem;
-            text-align: center;
-            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-            box-shadow: var(--shadow);
-            position: relative;
-            overflow: hidden;
-        }
-
-        .contact-item::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            height: 4px;
-            background: linear-gradient(90deg, var(--accent), var(--accent-secondary));
-            transform: scaleX(0);
-            transition: transform 0.4s ease;
-        }
-
-        .contact-item:hover::before {
-            transform: scaleX(1);
-        }
-
-        .contact-item:hover {
-            border-color: var(--accent);
-            transform: translateY(-8px) scale(1.02);
-            box-shadow: var(--shadow-hover);
-        }
-
-        .contact-item i {
-            color: var(--accent);
-            font-size: 1.5rem;
-            margin-bottom: 1rem;
-            transition: all 0.3s ease;
-        }
-
-        .contact-item:hover i {
-            transform: scale(1.2) rotate(5deg);
-            color: var(--accent-secondary);
-        }
-
-        /* Floating Particles Background */
-        .particles {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            pointer-events: none;
-            z-index: 1;
-        }
-
-        .particle {
-            position: absolute;
-            border-radius: 50%;
-            animation: float 8s ease-in-out infinite;
-        }
+        a { color: inherit; }
 
-        .particle:nth-child(1) { 
-            left: 10%; 
-            width: 3px; 
-            height: 3px; 
-            background: rgba(191, 161, 129, 0.6);
-            animation-delay: 0s; 
-        }
-        .particle:nth-child(2) { 
-            left: 20%; 
-            width: 2px; 
-            height: 2px; 
-            background: rgba(23, 133, 130, 0.5);
-            animation-delay: 1s; 
-        }
-        .particle:nth-child(3) { 
-            left: 30%; 
-            width: 4px; 
-            height: 4px; 
-            background: rgba(191, 161, 129, 0.4);
-            animation-delay: 2s; 
-        }
-        .particle:nth-child(4) { 
-            left: 40%; 
-            width: 2px; 
-            height: 2px; 
-            background: rgba(23, 133, 130, 0.6);
-            animation-delay: 3s; 
-        }
-        .particle:nth-child(5) { 
-            left: 50%; 
-            width: 3px; 
-            height: 3px; 
-            background: rgba(191, 161, 129, 0.5);
-            animation-delay: 4s; 
-        }
-        .particle:nth-child(6) { 
-            left: 60%; 
-            width: 2px; 
-            height: 2px; 
-            background: rgba(23, 133, 130, 0.4);
-            animation-delay: 5s; 
-        }
-        .particle:nth-child(7) { 
-            left: 70%; 
-            width: 4px; 
-            height: 4px; 
-            background: rgba(191, 161, 129, 0.6);
-            animation-delay: 6s; 
-        }
-        .particle:nth-child(8) { 
-            left: 80%; 
-            width: 2px; 
-            height: 2px; 
-            background: rgba(23, 133, 130, 0.5);
-            animation-delay: 7s; 
-        }
-        .particle:nth-child(9) { 
-            left: 90%; 
-            width: 3px; 
-            height: 3px; 
-            background: rgba(191, 161, 129, 0.4);
-            animation-delay: 8s; 
-        }
-
-        /* Enhanced Navigation */
-        .navbar {
-            position: fixed;
-            top: 0;
-            width: 100%;
-            background: rgba(255, 255, 255, 0.95);
-            backdrop-filter: blur(20px);
-            z-index: 1000;
-            padding: 1rem 0;
-            border-bottom: 1px solid var(--border);
-            box-shadow: var(--shadow);
-            transition: all 0.3s ease;
-        }
-
-        .nav-logo {
-            font-family: 'Inter', sans-serif;
-            font-size: 1.5rem;
-            font-weight: 800;
-            color: var(--accent);
-            text-decoration: none;
-            letter-spacing: -0.5px;
-            transition: all 0.3s ease;
-            position: relative;
-        }
-
-        .nav-logo::after {
-            content: '';
-            position: absolute;
-            bottom: -2px;
-            left: 0;
-            width: 0;
-            height: 2px;
-            background: linear-gradient(90deg, var(--accent), var(--accent-secondary));
-            transition: width 0.3s ease;
-        }
-
-        .nav-logo:hover::after {
-            width: 100%;
-        }
-
-        .nav-logo:hover {
-            transform: scale(1.05);
-        }
-
-        .nav-link {
-            color: var(--text-secondary);
-            text-decoration: none;
-            font-weight: 500;
-            font-size: 0.95rem;
-            transition: all 0.3s ease;
-            position: relative;
-            padding: 0.5rem 1rem;
-            border-radius: 8px;
-        }
-
-        .nav-link:hover {
-            color: var(--accent);
-            background: rgba(0, 123, 255, 0.1);
-            transform: translateY(-2px);
-        }
-
-        .nav-link::after {
-            content: '';
-            position: absolute;
-            width: 0;
-            height: 2px;
-            bottom: 0;
-            left: 50%;
-            background: linear-gradient(90deg, var(--accent), var(--accent-secondary));
-            transition: all 0.3s ease;
-            transform: translateX(-50%);
-        }
-
-        .nav-link:hover::after {
-            width: 80%;
-        }
-
-        /* Enhanced Section Headers */
-        .section-title {
-            font-size: clamp(2.5rem, 5vw, 3.5rem);
-            font-weight: 800;
-            margin-bottom: 1rem;
-            color: var(--text-primary);
-            letter-spacing: -1px;
-            position: relative;
-            display: inline-block;
-        }
-
-        .section-title::after {
-            content: '';
-            position: absolute;
-            bottom: -10px;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 0;
-            height: 4px;
-            background: linear-gradient(90deg, var(--accent), var(--accent-secondary));
-            transition: width 0.6s ease;
-        }
-
-        .section-header:hover .section-title::after {
-            width: 80px;
-        }
-
-        /* Enhanced Category Buttons */
-        .category-btn {
-            padding: 0.75rem 1.5rem;
-            border: 2px solid var(--border);
-            border-radius: 25px;
-            background: rgba(10, 24, 40, 0.8);
-            color: var(--text-secondary);
-            font-weight: 500;
-            font-size: 0.9rem;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            white-space: nowrap;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .category-btn::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(0, 123, 255, 0.1), transparent);
-            transition: left 0.5s ease;
-        }
-
-        .category-btn:hover::before {
-            left: 100%;
-        }
-
-        .category-btn:hover {
-            color: var(--accent);
-            border-color: var(--accent);
-            transform: translateY(-2px);
-            box-shadow: 0 4px 15px rgba(191, 161, 129, 0.2);
-        }
+        .container { max-width: var(--maxw); margin: 0 auto; padding: 0 1.5rem; }
 
-        .category-btn.active {
-            background: linear-gradient(135deg, var(--accent), var(--accent-secondary));
-            color: white;
-            border-color: var(--accent);
-            transform: translateY(-2px);
-            box-shadow: 0 4px 15px rgba(191, 161, 129, 0.3);
+        .grad-text {
+            background: var(--gradient);
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
         }
 
-        /* Scroll Progress Bar */
+        /* ===== Scroll progress ===== */
         .scroll-progress {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 0%;
-            height: 3px;
-            background: linear-gradient(90deg, var(--accent), var(--accent-secondary));
-            z-index: 1001;
-            transition: width 0.1s ease;
+            position: fixed; top: 0; left: 0; height: 3px; width: 0%;
+            background: var(--gradient); z-index: 2000; transition: width 0.1s linear;
         }
 
-        /* Enhanced Responsive Design */
-        @media (max-width: 768px) {
-            .nav-menu {
-                display: none;
-            }
+        /* ===== Navbar ===== */
+        .navbar {
+            position: fixed; top: 0; width: 100%; z-index: 1000;
+            background: rgba(255, 255, 235, 0.72);
+            backdrop-filter: blur(18px); -webkit-backdrop-filter: blur(18px);
+            border-bottom: 1px solid transparent;
+            transition: border-color 0.3s ease, background 0.3s ease;
+        }
+        .navbar.scrolled { border-bottom: 1px solid var(--border); background: rgba(255,255,235,0.88); }
+        .nav-inner {
+            max-width: var(--maxw); margin: 0 auto; padding: 0.9rem 1.5rem;
+            display: flex; align-items: center; justify-content: space-between;
+        }
+        .nav-logo { display: flex; align-items: center; gap: 0.6rem; text-decoration: none; font-weight: 800; font-size: 1.15rem; letter-spacing: -0.5px; }
+        .nav-mark {
+            width: 34px; height: 34px; border-radius: 10px; background: var(--gradient);
+            display: grid; place-items: center; color: #fff; font-weight: 700; font-size: 1.2rem; font-family: var(--font-display);
+            box-shadow: 0 6px 16px rgba(167,94,255,0.35);
+        }
+        .nav-menu { display: flex; align-items: center; gap: 0.4rem; list-style: none; }
+        .nav-link {
+            text-decoration: none; color: var(--ink-soft); font-weight: 500; font-size: 0.95rem;
+            padding: 0.5rem 0.9rem; border-radius: 10px; transition: all 0.2s ease;
+        }
+        .nav-link:hover { color: var(--ink); background: var(--bg-soft); }
+        .nav-cta {
+            text-decoration: none; font-weight: 600; font-size: 0.92rem; color: #fff;
+            background: var(--ink); padding: 0.6rem 1.15rem; border-radius: 999px;
+            transition: transform 0.2s ease, box-shadow 0.2s ease; display: inline-flex; align-items: center; gap: 0.45rem;
+        }
+        .nav-cta:hover { transform: translateY(-2px); box-shadow: 0 10px 24px rgba(13,13,26,0.25); }
+        .nav-toggle { display: none; background: none; border: none; font-size: 1.4rem; color: var(--ink); cursor: pointer; }
 
-            .hero-container {
-                grid-template-columns: 1fr;
-                text-align: center;
-                gap: 3rem;
-            }
+        /* ===== Hero ===== */
+        .hero { position: relative; padding: 11rem 0 6rem; overflow: hidden; }
+        .hero-bg { position: absolute; inset: 0; z-index: 0; overflow: hidden; }
+        .orb { position: absolute; border-radius: 50%; filter: blur(70px); opacity: 0.55; }
+        .orb-1 { width: 520px; height: 520px; background: radial-gradient(circle, #d9b8ff, transparent 65%); top: -160px; left: -120px; animation: drift 18s ease-in-out infinite; }
+        .orb-2 { width: 460px; height: 460px; background: radial-gradient(circle, #ffc98f, transparent 65%); top: -80px; right: -120px; animation: drift 22s ease-in-out infinite reverse; }
+        .orb-3 { width: 420px; height: 420px; background: radial-gradient(circle, #a75eff, transparent 65%); bottom: -200px; left: 35%; animation: drift 20s ease-in-out infinite; }
+        @keyframes drift { 0%,100% { transform: translate(0,0) scale(1);} 50% { transform: translate(30px, 40px) scale(1.08);} }
 
-            .hero-buttons {
-                justify-content: center;
-            }
+        .hero-grid { position: relative; z-index: 1; display: grid; grid-template-columns: 1.15fr 0.85fr; gap: 4rem; align-items: center; }
 
-            .code-block {
-                max-width: 100%;
-            }
+        .badge {
+            display: inline-flex; align-items: center; gap: 0.55rem; padding: 0.45rem 0.95rem;
+            background: rgba(255,255,255,0.7); border: 1px solid var(--border-strong); border-radius: 999px;
+            font-size: 0.85rem; font-weight: 600; color: var(--ink-soft); backdrop-filter: blur(8px); margin-bottom: 1.6rem;
+        }
+        .badge .dot { width: 8px; height: 8px; border-radius: 50%; background: #22c55e; box-shadow: 0 0 0 4px rgba(34,197,94,0.18); animation: pulseDot 2s infinite; }
+        @keyframes pulseDot { 0%,100% { opacity: 1;} 50% { opacity: 0.4;} }
 
-            .project-showcase {
-                grid-template-columns: 1fr;
-            }
+        .hero h1 {
+            font-size: clamp(2.9rem, 5.8vw, 4.9rem); font-weight: 600; line-height: 1.05;
+            letter-spacing: -1px; margin-bottom: 1.4rem;
+        }
+        .hero-sub { font-size: 1.15rem; color: var(--ink-soft); max-width: 540px; margin-bottom: 1rem; font-weight: 500; }
+        .hero-desc { font-size: 1.02rem; color: var(--ink-faint); max-width: 520px; margin-bottom: 2.2rem; }
 
-            .project-card {
-                margin: 0 1rem;
-            }
+        .btn {
+            display: inline-flex; align-items: center; gap: 0.55rem; text-decoration: none;
+            font-weight: 600; font-size: 0.98rem; padding: 0.9rem 1.6rem; border-radius: 999px;
+            border: none; cursor: pointer; transition: transform 0.2s ease, box-shadow 0.2s ease, background 0.2s ease;
+        }
+        .btn-primary { background: var(--brand); color: var(--bg); box-shadow: var(--shadow-lg); }
+        .btn-primary:hover { transform: translateY(-3px); box-shadow: 0 18px 44px rgba(3,79,70,0.3); background: #02382f; }
+        .btn-ghost { background: #fff; color: var(--ink); border: 1px solid var(--border-strong); }
+        .btn-ghost:hover { transform: translateY(-3px); box-shadow: var(--shadow-sm); border-color: var(--brand); color: var(--brand); }
+        .hero-buttons { display: flex; gap: 0.9rem; flex-wrap: wrap; }
 
-            .project-links {
-                flex-direction: column;
-                gap: 0.75rem;
-            }
+        /* Hero card */
+        .hero-card {
+            position: relative; background: var(--bg-card); border: 1px solid var(--border);
+            border-radius: 26px; padding: 1.6rem; box-shadow: var(--shadow-sm);
+            animation: floatCard 6s ease-in-out infinite;
+        }
+        @keyframes floatCard { 0%,100% { transform: translateY(0);} 50% { transform: translateY(-12px);} }
+        .hero-card::before {
+            content: ''; position: absolute; inset: -1px; border-radius: 26px; padding: 1px;
+            background: var(--gradient); -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+            -webkit-mask-composite: xor; mask-composite: exclude; opacity: 0.5; pointer-events: none;
+        }
+        .hc-top { display: flex; align-items: center; gap: 1rem; margin-bottom: 1.3rem; }
+        .hc-avatar { width: 60px; height: 60px; border-radius: 16px; background: var(--gradient); display: grid; place-items: center; color: #fff; font-weight: 700; font-size: 1.6rem; font-family: var(--font-display); box-shadow: 0 8px 20px rgba(167,94,255,0.35); }
+        .hc-name { font-weight: 800; font-size: 1.15rem; letter-spacing: -0.4px; }
+        .hc-role { font-size: 0.86rem; color: var(--ink-faint); }
+        .hc-stats { display: grid; grid-template-columns: repeat(3, 1fr); gap: 0.6rem; margin-bottom: 1.2rem; }
+        .hc-stat { background: var(--bg-soft); border-radius: 14px; padding: 0.85rem 0.6rem; text-align: center; }
+        .hc-stat b { display: block; font-size: 1.25rem; font-weight: 800; letter-spacing: -0.5px; }
+        .hc-stat span { font-size: 0.72rem; color: var(--ink-faint); font-weight: 500; }
+        .hc-tags { display: flex; flex-wrap: wrap; gap: 0.45rem; }
+        .hc-tag { font-size: 0.76rem; font-weight: 600; color: var(--brand); background: var(--gradient-soft); padding: 0.35rem 0.7rem; border-radius: 999px; }
 
-            .project-link {
-                width: 100%;
-                justify-content: center;
-            }
+        /* ===== Marquee / toolkit ===== */
+        .strip { padding: 2.4rem 0; border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); background: var(--bg-soft); }
+        .strip-label { text-align: center; font-size: 0.8rem; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase; color: var(--ink-faint); margin-bottom: 1.3rem; }
+        .marquee { overflow: hidden; -webkit-mask-image: linear-gradient(90deg, transparent, #000 12%, #000 88%, transparent); mask-image: linear-gradient(90deg, transparent, #000 12%, #000 88%, transparent); }
+        .marquee-track { display: flex; gap: 3rem; width: max-content; animation: scrollX 26s linear infinite; }
+        .marquee:hover .marquee-track { animation-play-state: paused; }
+        @keyframes scrollX { from { transform: translateX(0);} to { transform: translateX(-50%);} }
+        .tool { display: inline-flex; align-items: center; gap: 0.6rem; font-weight: 700; font-size: 1.05rem; color: var(--ink-soft); white-space: nowrap; }
+        .tool i { font-size: 1.25rem; color: var(--brand); }
 
-            .particles {
-                display: none;
+        /* ===== Section shells ===== */
+        section { scroll-margin-top: 80px; }
+        .section { padding: 6rem 0; }
+        .section-head { text-align: center; max-width: 640px; margin: 0 auto 3.5rem; }
+        .eyebrow { font-size: 0.82rem; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase; color: var(--brand); margin-bottom: 0.9rem; }
+        .section-title { font-size: clamp(2.2rem, 4.2vw, 3.2rem); font-weight: 600; letter-spacing: -0.4px; line-height: 1.12; margin-bottom: 1rem; }
+        .section-desc { font-size: 1.08rem; color: var(--ink-soft); }
+
+        /* ===== Filters ===== */
+        .filters { display: flex; justify-content: center; flex-wrap: wrap; gap: 0.6rem; margin-bottom: 3rem; }
+        .filter-btn {
+            padding: 0.6rem 1.25rem; border-radius: 999px; border: 1px solid var(--border-strong);
+            background: #fff; color: var(--ink-soft); font-weight: 600; font-size: 0.9rem; cursor: pointer;
+            transition: all 0.25s ease;
+        }
+        .filter-btn:hover { color: var(--brand); border-color: var(--brand); }
+        .filter-btn.active { background: var(--ink); color: #fff; border-color: var(--ink); }
+
+        /* ===== Project grid ===== */
+        .projects-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(350px, 1fr)); gap: 1.8rem; }
+        .project-card {
+            background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--radius);
+            overflow: hidden; display: flex; flex-direction: column; box-shadow: var(--shadow-sm);
+            transition: transform 0.35s cubic-bezier(0.2,0.8,0.2,1), box-shadow 0.35s ease, border-color 0.35s ease;
+        }
+        .project-card:hover { transform: translateY(-8px); box-shadow: var(--shadow-lg); border-color: rgba(167,94,255,0.4); }
+
+        .pc-media { position: relative; aspect-ratio: 16 / 9; overflow: hidden; background: var(--bg-soft); cursor: zoom-in; }
+        .pc-media img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.5s ease; display: block; }
+        .project-card:hover .pc-media img { transform: scale(1.06); }
+        .pc-media .zoom { position: absolute; inset: 0; background: rgba(13,13,26,0.45); display: grid; place-items: center; color: #fff; font-size: 1.6rem; opacity: 0; transition: opacity 0.3s ease; }
+        .pc-media:hover .zoom { opacity: 1; }
+        .pc-dual { display: grid; grid-template-columns: 1fr 1fr; gap: 2px; }
+        .pc-dual .pc-media { aspect-ratio: auto; height: 100%; }
+
+        .pc-body { padding: 1.6rem; display: flex; flex-direction: column; flex: 1; }
+        .pc-icon { width: 44px; height: 44px; border-radius: 12px; background: var(--gradient-soft); display: grid; place-items: center; color: var(--brand); font-size: 1.15rem; margin-bottom: 1rem; }
+        .pc-title { font-size: 1.45rem; font-weight: 600; letter-spacing: -0.2px; margin-bottom: 0.6rem; }
+        .pc-desc { font-size: 0.95rem; color: var(--ink-soft); margin-bottom: 1.2rem; flex: 1; }
+        .pc-tags { display: flex; flex-wrap: wrap; gap: 0.4rem; margin-bottom: 1.3rem; }
+        .pc-tag { font-size: 0.74rem; font-weight: 600; color: var(--ink-soft); background: var(--bg-soft); border: 1px solid var(--border); padding: 0.3rem 0.65rem; border-radius: 999px; }
+        .pc-links { display: flex; gap: 0.7rem; flex-wrap: wrap; }
+        .pc-link { display: inline-flex; align-items: center; gap: 0.45rem; text-decoration: none; font-weight: 600; font-size: 0.86rem; padding: 0.55rem 1.05rem; border-radius: 999px; transition: all 0.2s ease; }
+        .pc-link.primary { background: var(--ink); color: #fff; }
+        .pc-link.primary:hover { background: var(--brand); transform: translateY(-2px); }
+        .pc-link.ghost { background: #fff; color: var(--ink-soft); border: 1px solid var(--border-strong); }
+        .pc-link.ghost:hover { color: var(--brand); border-color: var(--brand); transform: translateY(-2px); }
+
+        /* ===== Stats band ===== */
+        .stats-band { background: var(--ink); color: #fff; border-radius: 28px; padding: 3rem 2rem; display: grid; grid-template-columns: repeat(4, 1fr); gap: 1.5rem; position: relative; overflow: hidden; }
+        .stats-band::before { content: ''; position: absolute; inset: 0; background: radial-gradient(circle at 15% 20%, rgba(167,94,255,0.42), transparent 45%), radial-gradient(circle at 85% 80%, rgba(255,169,70,0.3), transparent 45%); }
+        .stat { position: relative; text-align: center; }
+        .stat b { display: block; font-size: clamp(2rem, 4vw, 2.8rem); font-weight: 900; letter-spacing: -1px; }
+        .stat span { font-size: 0.9rem; color: rgba(255,255,255,0.7); font-weight: 500; }
+
+        /* ===== About ===== */
+        .about { background: var(--dawn); }
+        .about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: center; }
+        .about h2 { font-size: clamp(2rem, 3.8vw, 2.8rem); font-weight: 600; letter-spacing: -0.3px; line-height: 1.15; margin-bottom: 1.4rem; }
+        .about p { color: var(--ink-soft); font-size: 1.04rem; margin-bottom: 1.1rem; }
+        .about-list { list-style: none; display: grid; gap: 0.9rem; margin-top: 1.6rem; }
+        .about-list li { display: flex; gap: 0.8rem; align-items: flex-start; font-size: 0.98rem; color: var(--ink-soft); }
+        .about-list i { color: var(--brand); margin-top: 0.25rem; }
+        .about-visual { position: relative; border-radius: 26px; padding: 2.2rem; background: var(--gradient); color: #fff; box-shadow: var(--shadow-lg); overflow: hidden; }
+        .about-visual::after { content: ''; position: absolute; width: 240px; height: 240px; border-radius: 50%; background: rgba(255,255,255,0.12); top: -80px; right: -60px; }
+        .av-quote { font-size: 1.35rem; font-weight: 700; line-height: 1.4; letter-spacing: -0.4px; position: relative; }
+        .av-chips { display: flex; flex-wrap: wrap; gap: 0.5rem; margin-top: 1.8rem; position: relative; }
+        .av-chip { background: rgba(255,255,255,0.18); border: 1px solid rgba(255,255,255,0.25); padding: 0.4rem 0.85rem; border-radius: 999px; font-size: 0.82rem; font-weight: 600; }
+
+        /* ===== CTA ===== */
+        .cta-wrap { padding: 6rem 0; }
+        .cta {
+            position: relative; text-align: center; border-radius: 32px; padding: 4.5rem 2rem;
+            background: var(--bg-soft); border: 1px solid var(--border); overflow: hidden;
+        }
+        .cta .orb { opacity: 0.45; }
+        .cta-inner { position: relative; z-index: 1; max-width: 640px; margin: 0 auto; }
+        .cta h2 { font-size: clamp(2.2rem, 4.6vw, 3.4rem); font-weight: 600; letter-spacing: -0.5px; line-height: 1.1; margin-bottom: 1.2rem; }
+        .cta p { color: var(--ink-soft); font-size: 1.1rem; margin-bottom: 2.2rem; }
+        .cta .hero-buttons { justify-content: center; }
+
+        /* ===== Footer / contact ===== */
+        footer { border-top: 1px solid var(--border); padding: 3.5rem 0 2.5rem; }
+        .foot-grid { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1.5rem; }
+        .foot-links { display: flex; gap: 0.8rem; }
+        .foot-link { width: 46px; height: 46px; border-radius: 14px; display: grid; place-items: center; border: 1px solid var(--border-strong); color: var(--ink-soft); font-size: 1.15rem; text-decoration: none; transition: all 0.25s ease; }
+        .foot-link:hover { color: #fff; background: var(--gradient); border-color: transparent; transform: translateY(-3px); box-shadow: var(--shadow-lg); }
+        .foot-note { color: var(--ink-faint); font-size: 0.88rem; }
+
+        /* ===== Lightbox ===== */
+        .lightbox { display: none; position: fixed; inset: 0; z-index: 3000; background: rgba(8,8,16,0.92); backdrop-filter: blur(8px); align-items: center; justify-content: center; padding: 2rem; }
+        .lightbox.active { display: flex; animation: fade 0.25s ease; }
+        @keyframes fade { from { opacity: 0;} to { opacity: 1;} }
+        .lightbox img { max-width: 92%; max-height: 88vh; border-radius: 14px; box-shadow: 0 30px 80px rgba(0,0,0,0.5); }
+        .lightbox-close { position: absolute; top: 1.5rem; right: 1.8rem; width: 48px; height: 48px; border-radius: 50%; background: rgba(255,255,255,0.12); color: #fff; border: none; font-size: 1.6rem; cursor: pointer; transition: all 0.25s ease; }
+        .lightbox-close:hover { background: var(--brand); transform: rotate(90deg); }
+
+        /* ===== Reveal animation ===== */
+        .reveal { opacity: 0; transform: translateY(28px); transition: opacity 0.7s ease, transform 0.7s ease; }
+        .reveal.in { opacity: 1; transform: translateY(0); }
+
+        /* ===== Responsive ===== */
+        @media (max-width: 900px) {
+            .hero-grid { grid-template-columns: 1fr; gap: 3rem; }
+            .hero-card { max-width: 460px; }
+            .about-grid { grid-template-columns: 1fr; gap: 2.5rem; }
+            .stats-band { grid-template-columns: repeat(2, 1fr); gap: 2rem; }
+        }
+        @media (max-width: 680px) {
+            .nav-menu { display: none; }
+            .nav-toggle { display: block; }
+            .nav-menu.open {
+                display: flex; flex-direction: column; position: absolute; top: 100%; left: 0; right: 0;
+                background: #fff; border-bottom: 1px solid var(--border); padding: 1rem 1.5rem 1.5rem; gap: 0.2rem;
             }
+            .nav-menu.open .nav-link, .nav-menu.open .nav-cta { width: 100%; }
+            .nav-menu.open .nav-cta { justify-content: center; margin-top: 0.5rem; }
+            .hero { padding-top: 8.5rem; }
+            .projects-grid { grid-template-columns: 1fr; }
+            .stats-band { grid-template-columns: 1fr 1fr; }
+        }
+        @media (prefers-reduced-motion: reduce) {
+            *, *::before, *::after { animation: none !important; transition: none !important; }
+            .reveal { opacity: 1; transform: none; }
         }
     </style>
 </head>
 <body>
+    <div class="scroll-progress"></div>
+
     <!-- Navigation -->
-    <nav class="navbar">
-        <div class="nav-container">
+    <nav class="navbar" id="navbar">
+        <div class="nav-inner">
             <a href="#home" class="nav-logo">
-                NK
+                <span class="nav-mark">N</span>
+                <span>Nolan Koch</span>
             </a>
-            <ul class="nav-menu">
-                <li><a href="#home" class="nav-link">Home</a></li>
-                <li><a href="#projects" class="nav-link">Projects</a></li>
+            <ul class="nav-menu" id="navMenu">
+                <li><a href="#projects" class="nav-link">Work</a></li>
                 <li><a href="#about" class="nav-link">About</a></li>
-                <li><a href="#contact" class="nav-link">Contact</a></li>
+                <li><a href="#stack" class="nav-link">Stack</a></li>
+                <li><a href="#contact" class="nav-cta"><i class="fas fa-paper-plane"></i> Let's talk</a></li>
             </ul>
+            <button class="nav-toggle" id="navToggle" aria-label="Toggle menu"><i class="fas fa-bars"></i></button>
         </div>
     </nav>
 
-    <!-- Scroll Progress Bar -->
-    <div class="scroll-progress"></div>
-
-    <!-- Floating Particles -->
-    <div class="particles">
-        <div class="particle"></div>
-        <div class="particle"></div>
-        <div class="particle"></div>
-        <div class="particle"></div>
-        <div class="particle"></div>
-        <div class="particle"></div>
-        <div class="particle"></div>
-        <div class="particle"></div>
-        <div class="particle"></div>
-    </div>
-
-    <!-- Hero Section -->
+    <!-- Hero -->
     <section id="home" class="hero">
-        <div class="hero-container">
+        <div class="hero-bg">
+            <span class="orb orb-1"></span>
+            <span class="orb orb-2"></span>
+            <span class="orb orb-3"></span>
+        </div>
+        <div class="container hero-grid">
             <div class="hero-content">
-                <div class="hero-greeting">Hello, I'm</div>
-                <h1 class="hero-title">Nolan Koch</h1>
-                <h2 class="hero-subtitle">CS & Cybersecurity Student | Software Developer | AI Researcher (Algoverse) | Slippery Rock University</h2>
-                <p class="hero-description">
-                    I'm passionate about building innovative solutions that make a real impact. My interests span machine learning, LLMs, cybersecurity, and software development.
-                </p>
+                <span class="badge"><span class="dot"></span> Open to 2026 internships & AI research</span>
+                <h1>Don't just write code.<br><span class="grad-text">Build intelligence.</span></h1>
+                <p class="hero-sub">I'm Nolan Koch — a CS &amp; Cybersecurity student and AI researcher turning ambitious ideas into shipped LLM systems, ML models, and AI-powered automation.</p>
+                <p class="hero-desc">From multi-agent reasoning and reinforcement learning to GPU-accelerated computing and end-to-end workflow automation with n8n, I build things that actually run in the real world.</p>
                 <div class="hero-buttons">
-                    <a href="#projects" class="btn btn-primary">
-                        View Projects
-                    </a>
-                    <a href="#contact" class="btn btn-secondary">
-                        Get In Touch
-                    </a>
+                    <a href="#projects" class="btn btn-primary"><i class="fas fa-layer-group"></i> Explore my work</a>
+                    <a href="#contact" class="btn btn-ghost"><i class="fas fa-envelope"></i> Get in touch</a>
                 </div>
             </div>
             <div class="hero-visual">
-                <div class="code-block">
-                    <div class="code-line"><span class="code-keyword">const</span> <span class="code-string">developer</span> = {</div>
-                    <div class="code-line">&nbsp;&nbsp;<span class="code-string">name</span>: <span class="code-string">'Nolan Koch'</span>,</div>
-                    <div class="code-line">&nbsp;&nbsp;<span class="code-string">role</span>: <span class="code-string">'Developer'</span>,</div>
-                    <div class="code-line">&nbsp;&nbsp;<span class="code-string">passion</span>: <span class="code-string">'Innovation'</span>,</div>
-                    <div class="code-line">&nbsp;&nbsp;<span class="code-keyword">skills</span>: [<span class="code-string">'Python'</span>, <span class="code-string">'C++'</span>, <span class="code-string">'Java'</span>],</div>
-                    <div class="code-line">&nbsp;&nbsp;<span class="code-comment">// Always learning, always building</span></div>
-                    <div class="code-line">};</div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Projects Section -->
-    <section id="projects" class="projects">
-        <div class="container">
-            <div class="section-header">
-                <h2 class="section-title">Projects</h2>
-                <p class="section-subtitle">
-                    A showcase of my coding and AI projects
-                </p>
-            </div>
-            
-            <!-- Project Categories -->
-            <div class="project-categories">
-                <button class="category-btn active" data-category="all">All Projects</button>
-                <button class="category-btn" data-category="coding">Coding Projects</button>
-                <button class="category-btn" data-category="ai">AI Projects</button>
-            </div>
-
-            <!-- Project Showcase -->
-            <div class="project-showcase">
-                <!-- Portfolio Website -->
-                <div class="project-card" data-category="coding">
-                    <div class="project-header">
-                        <div class="project-icon">
-                            <i class="fas fa-code"></i>
-                        </div>
-                        <h3 class="project-title">Portfolio Website</h3>
-                        <p class="project-description">A modern, responsive portfolio built with HTML, CSS, and JavaScript featuring smooth animations and interactive elements.</p>
-                        <div class="project-tech">
-                            <span class="tech-tag">HTML</span>
-                            <span class="tech-tag">CSS</span>
-                            <span class="tech-tag">JavaScript</span>
+                <div class="hero-card">
+                    <div class="hc-top">
+                        <div class="hc-avatar">NK</div>
+                        <div>
+                            <div class="hc-name">Nolan Koch</div>
+                            <div class="hc-role">AI Builder · Slippery Rock University</div>
                         </div>
                     </div>
-                    <div class="project-footer">
-                        <div class="project-links">
-                            <a href="https://nkoch33.github.io/nolan-koch-portfolio" class="project-link" target="_blank" rel="noopener noreferrer">
-                                <i class="fas fa-external-link-alt"></i> Live Demo
-                            </a>
-                            <a href="https://github.com/nkoch33/nolan-koch-portfolio" class="project-link" target="_blank" rel="noopener noreferrer">
-                                <i class="fab fa-github"></i> Source Code
-                            </a>
-                        </div>
+                    <div class="hc-stats">
+                        <div class="hc-stat"><b class="grad-text">8+</b><span>Projects shipped</span></div>
+                        <div class="hc-stat"><b class="grad-text">18×</b><span>CUDA speedup</span></div>
+                        <div class="hc-stat"><b class="grad-text">50k+</b><span>SKUs forecast</span></div>
                     </div>
-                </div>
-
-                <!-- Train of Thought LLM Project -->
-                <div class="project-card" data-category="ai">
-                    <div class="project-header">
-                        <div class="project-icon">
-                            <i class="fas fa-brain"></i>
-                        </div>
-                        <h3 class="project-title">Train of Thought: Multi-Agent LLM System</h3>
-                        <p class="project-description">A sophisticated multi-agent LLM system implementing advanced chain-of-thought reasoning with recursive subproblem validation, backtracking, prompt decomposition, and safety checks. Features Google Gemini integration.</p>
-                        <div class="project-tech">
-                            <span class="tech-tag">Python</span>
-                            <span class="tech-tag">LLM</span>
-                            <span class="tech-tag">Multi-Agent</span>
-                            <span class="tech-tag">Chain-of-Thought</span>
-                            <span class="tech-tag">Google Gemini</span>
-                        </div>
-                    </div>
-                    <div class="project-footer">
-                        <div class="project-links">
-                            <a href="https://github.com/nkoch33/Train_of_Thought_LLM_Project" class="project-link" target="_blank" rel="noopener noreferrer">
-                                <i class="fab fa-github"></i> Source Code
-                            </a>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Black Jack RL Project -->
-                <div class="project-card" data-category="ai">
-                    <div class="project-header">
-                        <div class="project-icon">
-                            <i class="fas fa-robot"></i>
-                        </div>
-                        <h3 class="project-title">Black Jack Reinforcement Learning</h3>
-                        <p class="project-description">An interactive reinforcement learning system that trains AI agents to play Blackjack using Q-learning and Monte Carlo methods. Features complete game environment, training tools, visualization, and performance analysis.</p>
-                        <div class="project-tech">
-                            <span class="tech-tag">Python</span>
-                            <span class="tech-tag">Reinforcement Learning</span>
-                            <span class="tech-tag">Q-Learning</span>
-                            <span class="tech-tag">Monte Carlo</span>
-                            <span class="tech-tag">Gym Environment</span>
-                        </div>
-                    </div>
-                    <div class="project-footer">
-                        <div class="project-links">
-                            <a href="https://github.com/nkoch33/Black_Jack_RL_Project" class="project-link" target="_blank" rel="noopener noreferrer">
-                                <i class="fab fa-github"></i> Source Code
-                            </a>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Web Application Firewall -->
-                <div class="project-card" data-category="ai">
-                    <div class="project-header">
-                        <div class="project-icon">
-                            <i class="fas fa-shield-alt"></i>
-                        </div>
-                        
-                        <!-- Dual Project Images -->
-                        <div class="project-dual-images">
-                            <div class="project-image-container" onclick="openLightbox('images/waf-screenshot1.png')">
-                                <img src="images/waf-screenshot1.png" alt="WAF Dashboard" class="project-image">
-                                <div class="project-image-overlay">
-                                    <i class="fas fa-search-plus"></i>
-                                </div>
-                            </div>
-                            <div class="project-image-container" onclick="openLightbox('images/waf-screenshot2.png')">
-                                <img src="images/waf-screenshot2.png" alt="WAF Attack Detection" class="project-image">
-                                <div class="project-image-overlay">
-                                    <i class="fas fa-search-plus"></i>
-                                </div>
-                            </div>
-                        </div>
-                        
-                        <h3 class="project-title">Web Application Firewall (WAF)</h3>
-                        <p class="project-description">A comprehensive web application firewall built with Python and Flask that protects web applications from common attacks using both rule-based and machine learning approaches. Features SQL injection detection, XSS protection, rate limiting, and real-time monitoring.</p>
-                        <div class="project-tech">
-                            <span class="tech-tag">Python</span>
-                            <span class="tech-tag">Flask</span>
-                            <span class="tech-tag">Machine Learning</span>
-                            <span class="tech-tag">Cybersecurity</span>
-                            <span class="tech-tag">Docker</span>
-                        </div>
-                    </div>
-                    <div class="project-footer">
-                        <div class="project-links">
-                            <a href="https://github.com/nkoch33/web_app_firewall" class="project-link" target="_blank" rel="noopener noreferrer">
-                                <i class="fab fa-github"></i> Source Code
-                            </a>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Car Detection Project -->
-                <div class="project-card" data-category="ai">
-                    <div class="project-header">
-                        <div class="project-icon">
-                            <i class="fas fa-car"></i>
-                        </div>
-                        
-                        <!-- Project Image -->
-                        <div class="project-image-container" onclick="openLightbox('images/car-detection.png')">
-                            <img src="images/car-detection.png" alt="Car Detection System Demo" class="project-image">
-                            <div class="project-image-overlay">
-                                <i class="fas fa-search-plus"></i>
-                            </div>
-                        </div>
-                        
-                        <h3 class="project-title">Car Detection System</h3>
-                        <p class="project-description">A comprehensive computer vision system using YOLOv8 for real-time car and object detection in images and videos. Features web interface, analytics, and custom model training capabilities.</p>
-                        <div class="project-tech">
-                            <span class="tech-tag">Python</span>
-                            <span class="tech-tag">YOLOv8</span>
-                            <span class="tech-tag">OpenCV</span>
-                            <span class="tech-tag">Flask</span>
-                            <span class="tech-tag">Computer Vision</span>
-                        </div>
-                    </div>
-                    <div class="project-footer">
-                        <div class="project-links">
-                            <a href="https://github.com/nkoch33/car-detection-project" class="project-link" target="_blank" rel="noopener noreferrer">
-                                <i class="fab fa-github"></i> Source Code
-                            </a>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Inventory Demand Forecasting -->
-                <div class="project-card" data-category="ai">
-                    <div class="project-header">
-                        <div class="project-icon">
-                            <i class="fas fa-chart-line"></i>
-                        </div>
-                        <h3 class="project-title">Inventory Demand Forecasting</h3>
-                        <p class="project-description">A comprehensive machine learning system for retail inventory demand forecasting using LSTM and Prophet models. Features time series analysis, feature engineering, GPU acceleration, and the ability to predict demand for 50k+ SKUs with stock optimization and promotion planning.</p>
-                        <div class="project-tech">
-                            <span class="tech-tag">Python</span>
-                            <span class="tech-tag">TensorFlow</span>
-                            <span class="tech-tag">LSTM</span>
-                            <span class="tech-tag">Prophet</span>
-                            <span class="tech-tag">Time Series</span>
-                            <span class="tech-tag">Machine Learning</span>
-                        </div>
-                    </div>
-                    <div class="project-footer">
-                        <div class="project-links">
-                            <a href="https://github.com/nkoch33/Inventory-Demand-Forecasting" class="project-link" target="_blank" rel="noopener noreferrer">
-                                <i class="fab fa-github"></i> Source Code
-                            </a>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- CUDA Parallel Matrix Multiplication -->
-                <div class="project-card" data-category="coding">
-                    <div class="project-header">
-                        <div class="project-icon">
-                            <i class="fas fa-microchip"></i>
-                        </div>
-                        
-                        <!-- Project Image -->
-                        <div class="project-image-container" onclick="openLightbox('images/cuda-matrix-diagram.png')">
-                            <img src="images/cuda-matrix-diagram.png" alt="Matrix Multiplication Diagram" class="project-image">
-                            <div class="project-image-overlay">
-                                <i class="fas fa-search-plus"></i>
-                            </div>
-                        </div>
-                        
-                        <h3 class="project-title">CUDA Parallel Matrix Multiplication</h3>
-                        <p class="project-description">High-performance CUDA implementation of matrix multiplication with shared memory tiling optimizations, achieving 18× speedup compared to NumPy. Features multiple kernel implementations, comprehensive benchmarking, and Nsight Compute profiling integration.</p>
-                        <div class="project-tech">
-                            <span class="tech-tag">CUDA</span>
-                            <span class="tech-tag">C++</span>
-                            <span class="tech-tag">CMake</span>
-                            <span class="tech-tag">GPU Computing</span>
-                            <span class="tech-tag">Parallel Processing</span>
-                        </div>
-                    </div>
-                    <div class="project-footer">
-                        <div class="project-links">
-                            <a href="https://github.com/nkoch33/CUDA-Parallel-Matrix-Multiplication" class="project-link" target="_blank" rel="noopener noreferrer">
-                                <i class="fab fa-github"></i> Source Code
-                            </a>
-                        </div>
+                    <div class="hc-tags">
+                        <span class="hc-tag">Python</span>
+                        <span class="hc-tag">LLMs</span>
+                        <span class="hc-tag">Reinforcement Learning</span>
+                        <span class="hc-tag">n8n</span>
+                        <span class="hc-tag">CUDA</span>
+                        <span class="hc-tag">Cybersecurity</span>
                     </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- About Section -->
-    <section id="about" class="about">
-        <div class="container">
-            <div class="section-header">
-                <h2 class="section-title">About Me</h2>
-                <p class="section-subtitle">
-                    Outside of school, and work I enjoy mountain biking, hiking, and playing video games.
-                </p>
+    <!-- Toolkit strip -->
+    <div class="strip" id="stack">
+        <div class="strip-label">The stack I build with</div>
+        <div class="marquee">
+            <div class="marquee-track">
+                <span class="tool"><i class="fab fa-python"></i> Python</span>
+                <span class="tool"><i class="fas fa-brain"></i> PyTorch &amp; TensorFlow</span>
+                <span class="tool"><i class="fas fa-robot"></i> LLMs &amp; Agents</span>
+                <span class="tool"><i class="fas fa-diagram-project"></i> n8n Automation</span>
+                <span class="tool"><i class="fas fa-microchip"></i> CUDA / C++</span>
+                <span class="tool"><i class="fas fa-shield-halved"></i> Cybersecurity</span>
+                <span class="tool"><i class="fab fa-docker"></i> Docker</span>
+                <span class="tool"><i class="fab fa-js"></i> JavaScript</span>
+                <!-- duplicate for seamless loop -->
+                <span class="tool"><i class="fab fa-python"></i> Python</span>
+                <span class="tool"><i class="fas fa-brain"></i> PyTorch &amp; TensorFlow</span>
+                <span class="tool"><i class="fas fa-robot"></i> LLMs &amp; Agents</span>
+                <span class="tool"><i class="fas fa-diagram-project"></i> n8n Automation</span>
+                <span class="tool"><i class="fas fa-microchip"></i> CUDA / C++</span>
+                <span class="tool"><i class="fas fa-shield-halved"></i> Cybersecurity</span>
+                <span class="tool"><i class="fab fa-docker"></i> Docker</span>
+                <span class="tool"><i class="fab fa-js"></i> JavaScript</span>
             </div>
-            
-            <div class="about-content">
-                <p class="about-text">
-                    I'm a dedicated developer with expertise in modern web technologies. 
-                    I love building applications that solve real-world problems and create 
-                    meaningful user experiences.
-                </p>
-                <p class="about-text">
-                    With a strong foundation in both frontend and backend development, 
-                    I enjoy working across the full stack and learning new technologies 
-                    to stay current with industry best practices.
-                </p>
-            </div>
-        </div>
-    </section>
-
-    <!-- Contact Section -->
-    <section id="contact" class="contact">
-        <div class="container">
-            <div class="section-header">
-                <h2 class="section-title">Get In Touch</h2>
-                <p class="section-subtitle">
-                    Let's work together to build a better future!
-                </p>
-            </div>
-            
-            <div class="contact-grid">
-                <div class="contact-item">
-                    <h3><i class="fas fa-envelope"></i>Email</h3>
-                    <p><a href="mailto:kochnolan376@gmail.com" class="contact-link" rel="noopener noreferrer">kochnolan376@gmail.com</a></p>
-                </div>
-                <div class="contact-item">
-                    <h3><i class="fab fa-linkedin"></i>LinkedIn</h3>
-                    <p><a href="https://www.linkedin.com/in/nolankoch" class="contact-link" target="_blank" rel="noopener noreferrer">www.linkedin.com/in/nolankoch</a></p>
-                </div>
-                <div class="contact-item">
-                    <h3><i class="fab fa-github"></i>GitHub</h3>
-                    <p><a href="https://github.com/nkoch33" class="contact-link" target="_blank" rel="noopener noreferrer">https://github.com/nkoch33</a></p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Lightbox Modal -->
-    <div id="lightbox" class="lightbox-modal">
-        <div class="lightbox-content">
-            <span class="lightbox-close" onclick="closeLightbox()">&times;</span>
-            <img id="lightbox-img" class="lightbox-image" src="" alt="Project Image">
         </div>
     </div>
 
+    <!-- Projects -->
+    <section id="projects" class="section">
+        <div class="container">
+            <div class="section-head reveal">
+                <div class="eyebrow">Selected work</div>
+                <h2 class="section-title">Things I've designed, trained &amp; shipped</h2>
+                <p class="section-desc">A mix of AI research, machine learning, automation, and systems work — each built end-to-end, from first commit to working demo.</p>
+            </div>
+
+            <div class="filters reveal">
+                <button class="filter-btn active" data-filter="all">All work</button>
+                <button class="filter-btn" data-filter="ai">AI &amp; ML</button>
+                <button class="filter-btn" data-filter="automation">Automation</button>
+                <button class="filter-btn" data-filter="systems">Systems &amp; Web</button>
+            </div>
+
+            <div class="projects-grid">
+
+                <!-- n8n Automation (NEW) -->
+                <article class="project-card reveal" data-category="automation">
+                    <div class="pc-media" onclick="openLightbox('images/proj-n8n-automation.png')">
+                        <img src="images/proj-n8n-automation.png" alt="AI-powered n8n automation workflow">
+                        <div class="zoom"><i class="fas fa-magnifying-glass-plus"></i></div>
+                    </div>
+                    <div class="pc-body">
+                        <div class="pc-icon"><i class="fas fa-diagram-project"></i></div>
+                        <h3 class="pc-title">AI-Powered Automation with n8n</h3>
+                        <p class="pc-desc">Self-hosted n8n workflows that wire together webhooks, REST APIs, databases, and LLMs to automate the busywork. I've built pipelines that ingest data, enrich it with an AI model, and route the results to Slack, email, and Sheets — turning repetitive multi-step tasks into hands-off, event-driven automations that run 24/7.</p>
+                        <div class="pc-tags">
+                            <span class="pc-tag">n8n</span>
+                            <span class="pc-tag">Workflow Automation</span>
+                            <span class="pc-tag">LLM Integration</span>
+                            <span class="pc-tag">Webhooks &amp; APIs</span>
+                            <span class="pc-tag">No/Low-Code</span>
+                        </div>
+                        <div class="pc-links">
+                            <a href="https://github.com/nkoch33" class="pc-link primary" target="_blank" rel="noopener noreferrer"><i class="fab fa-github"></i> View on GitHub</a>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- Train of Thought -->
+                <article class="project-card reveal" data-category="ai">
+                    <div class="pc-media" onclick="openLightbox('images/proj-train-of-thought.png')">
+                        <img src="images/proj-train-of-thought.png" alt="Multi-agent LLM reasoning graph">
+                        <div class="zoom"><i class="fas fa-magnifying-glass-plus"></i></div>
+                    </div>
+                    <div class="pc-body">
+                        <div class="pc-icon"><i class="fas fa-brain"></i></div>
+                        <h3 class="pc-title">Train of Thought — Multi-Agent LLM System</h3>
+                        <p class="pc-desc">A multi-agent reasoning engine that decomposes hard problems into sub-problems, solves them recursively, and validates each step before moving on. It combines chain-of-thought prompting, backtracking, prompt decomposition, and built-in safety checks — orchestrated on top of Google Gemini to produce answers that are auditable, not just plausible.</p>
+                        <div class="pc-tags">
+                            <span class="pc-tag">Python</span>
+                            <span class="pc-tag">LLMs</span>
+                            <span class="pc-tag">Multi-Agent</span>
+                            <span class="pc-tag">Chain-of-Thought</span>
+                            <span class="pc-tag">Google Gemini</span>
+                        </div>
+                        <div class="pc-links">
+                            <a href="https://github.com/nkoch33/Train_of_Thought_LLM_Project" class="pc-link primary" target="_blank" rel="noopener noreferrer"><i class="fab fa-github"></i> View on GitHub</a>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- Blackjack RL -->
+                <article class="project-card reveal" data-category="ai">
+                    <div class="pc-media" onclick="openLightbox('images/proj-blackjack-rl.png')">
+                        <img src="images/proj-blackjack-rl.png" alt="Reinforcement learning blackjack agent">
+                        <div class="zoom"><i class="fas fa-magnifying-glass-plus"></i></div>
+                    </div>
+                    <div class="pc-body">
+                        <div class="pc-icon"><i class="fas fa-robot"></i></div>
+                        <h3 class="pc-title">Blackjack Reinforcement Learning</h3>
+                        <p class="pc-desc">An end-to-end RL playground that trains agents to play Blackjack from scratch using Q-learning and Monte Carlo control. It ships with a full game environment, configurable training loops, and visual analytics that chart how the agent's policy and win rate evolve over thousands of hands — a clean, hands-on look at how agents learn optimal strategy.</p>
+                        <div class="pc-tags">
+                            <span class="pc-tag">Python</span>
+                            <span class="pc-tag">Reinforcement Learning</span>
+                            <span class="pc-tag">Q-Learning</span>
+                            <span class="pc-tag">Monte Carlo</span>
+                            <span class="pc-tag">Gym</span>
+                        </div>
+                        <div class="pc-links">
+                            <a href="https://github.com/nkoch33/Black_Jack_RL_Project" class="pc-link primary" target="_blank" rel="noopener noreferrer"><i class="fab fa-github"></i> View on GitHub</a>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- WAF -->
+                <article class="project-card reveal" data-category="systems">
+                    <div class="pc-dual">
+                        <div class="pc-media" onclick="openLightbox('images/waf-screenshot1.png')">
+                            <img src="images/waf-screenshot1.png" alt="WAF dashboard">
+                            <div class="zoom"><i class="fas fa-magnifying-glass-plus"></i></div>
+                        </div>
+                        <div class="pc-media" onclick="openLightbox('images/waf-screenshot2.png')">
+                            <img src="images/waf-screenshot2.png" alt="WAF attack detection">
+                            <div class="zoom"><i class="fas fa-magnifying-glass-plus"></i></div>
+                        </div>
+                    </div>
+                    <div class="pc-body">
+                        <div class="pc-icon"><i class="fas fa-shield-halved"></i></div>
+                        <h3 class="pc-title">Web Application Firewall (WAF)</h3>
+                        <p class="pc-desc">A Python &amp; Flask web application firewall that blends classic rule-based filtering with a machine-learning classifier to catch what static rules miss. It detects SQL injection and XSS in real time, enforces rate limiting, and streams live traffic to a monitoring dashboard — all containerized with Docker for drop-in deployment in front of any app.</p>
+                        <div class="pc-tags">
+                            <span class="pc-tag">Python</span>
+                            <span class="pc-tag">Flask</span>
+                            <span class="pc-tag">Machine Learning</span>
+                            <span class="pc-tag">Cybersecurity</span>
+                            <span class="pc-tag">Docker</span>
+                        </div>
+                        <div class="pc-links">
+                            <a href="https://github.com/nkoch33/web_app_firewall" class="pc-link primary" target="_blank" rel="noopener noreferrer"><i class="fab fa-github"></i> View on GitHub</a>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- Car Detection -->
+                <article class="project-card reveal" data-category="ai">
+                    <div class="pc-media" onclick="openLightbox('images/car-detection.png')">
+                        <img src="images/car-detection.png" alt="Car detection system demo">
+                        <div class="zoom"><i class="fas fa-magnifying-glass-plus"></i></div>
+                    </div>
+                    <div class="pc-body">
+                        <div class="pc-icon"><i class="fas fa-car"></i></div>
+                        <h3 class="pc-title">Real-Time Car Detection System</h3>
+                        <p class="pc-desc">A computer-vision pipeline built on YOLOv8 that detects and tracks cars and objects across images and live video. It comes with a Flask web interface for uploads, an analytics view for detection stats, and hooks for training custom models — a practical, deployable take on modern object detection.</p>
+                        <div class="pc-tags">
+                            <span class="pc-tag">Python</span>
+                            <span class="pc-tag">YOLOv8</span>
+                            <span class="pc-tag">OpenCV</span>
+                            <span class="pc-tag">Flask</span>
+                            <span class="pc-tag">Computer Vision</span>
+                        </div>
+                        <div class="pc-links">
+                            <a href="https://github.com/nkoch33/car-detection-project" class="pc-link primary" target="_blank" rel="noopener noreferrer"><i class="fab fa-github"></i> View on GitHub</a>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- Inventory Forecasting -->
+                <article class="project-card reveal" data-category="ai">
+                    <div class="pc-media" onclick="openLightbox('images/proj-inventory-forecasting.png')">
+                        <img src="images/proj-inventory-forecasting.png" alt="Inventory demand forecasting dashboard">
+                        <div class="zoom"><i class="fas fa-magnifying-glass-plus"></i></div>
+                    </div>
+                    <div class="pc-body">
+                        <div class="pc-icon"><i class="fas fa-chart-line"></i></div>
+                        <h3 class="pc-title">Inventory Demand Forecasting</h3>
+                        <p class="pc-desc">A production-style forecasting system that predicts retail demand across 50k+ SKUs using LSTM and Prophet models. It handles time-series feature engineering, GPU-accelerated training, and downstream stock optimization and promotion planning — translating raw sales history into decisions that reduce stockouts and overstock.</p>
+                        <div class="pc-tags">
+                            <span class="pc-tag">Python</span>
+                            <span class="pc-tag">TensorFlow</span>
+                            <span class="pc-tag">LSTM</span>
+                            <span class="pc-tag">Prophet</span>
+                            <span class="pc-tag">Time Series</span>
+                        </div>
+                        <div class="pc-links">
+                            <a href="https://github.com/nkoch33/Inventory-Demand-Forecasting" class="pc-link primary" target="_blank" rel="noopener noreferrer"><i class="fab fa-github"></i> View on GitHub</a>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- CUDA Matrix -->
+                <article class="project-card reveal" data-category="systems">
+                    <div class="pc-media" onclick="openLightbox('images/cuda-matrix-diagram.png')">
+                        <img src="images/cuda-matrix-diagram.png" alt="CUDA matrix multiplication diagram">
+                        <div class="zoom"><i class="fas fa-magnifying-glass-plus"></i></div>
+                    </div>
+                    <div class="pc-body">
+                        <div class="pc-icon"><i class="fas fa-microchip"></i></div>
+                        <h3 class="pc-title">CUDA Parallel Matrix Multiplication</h3>
+                        <p class="pc-desc">A high-performance CUDA implementation of matrix multiplication that hits an 18× speedup over NumPy through shared-memory tiling and memory-coalescing optimizations. It includes multiple kernel variants, a full benchmarking harness, and Nsight Compute profiling — a deep dive into squeezing real throughput out of the GPU.</p>
+                        <div class="pc-tags">
+                            <span class="pc-tag">CUDA</span>
+                            <span class="pc-tag">C++</span>
+                            <span class="pc-tag">CMake</span>
+                            <span class="pc-tag">GPU Computing</span>
+                            <span class="pc-tag">Parallelism</span>
+                        </div>
+                        <div class="pc-links">
+                            <a href="https://github.com/nkoch33/CUDA-Parallel-Matrix-Multiplication" class="pc-link primary" target="_blank" rel="noopener noreferrer"><i class="fab fa-github"></i> View on GitHub</a>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- Portfolio Website -->
+                <article class="project-card reveal" data-category="systems">
+                    <div class="pc-media" onclick="openLightbox('images/proj-portfolio-website.png')">
+                        <img src="images/proj-portfolio-website.png" alt="Personal portfolio website">
+                        <div class="zoom"><i class="fas fa-magnifying-glass-plus"></i></div>
+                    </div>
+                    <div class="pc-body">
+                        <div class="pc-icon"><i class="fas fa-code"></i></div>
+                        <h3 class="pc-title">This Portfolio</h3>
+                        <p class="pc-desc">A fast, fully responsive portfolio hand-built with vanilla HTML, CSS, and JavaScript — no frameworks, no build step. It features a modern design system, scroll-triggered animations, filterable project cards, and an image lightbox, all served from a single self-contained page and deployed on GitHub Pages.</p>
+                        <div class="pc-tags">
+                            <span class="pc-tag">HTML</span>
+                            <span class="pc-tag">CSS</span>
+                            <span class="pc-tag">JavaScript</span>
+                            <span class="pc-tag">GitHub Pages</span>
+                        </div>
+                        <div class="pc-links">
+                            <a href="https://nkoch33.github.io/nolan-koch-portfolio" class="pc-link primary" target="_blank" rel="noopener noreferrer"><i class="fas fa-arrow-up-right-from-square"></i> Live demo</a>
+                            <a href="https://github.com/nkoch33/nolan-koch-portfolio" class="pc-link ghost" target="_blank" rel="noopener noreferrer"><i class="fab fa-github"></i> Source</a>
+                        </div>
+                    </div>
+                </article>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- Stats band -->
+    <div class="container reveal">
+        <div class="stats-band">
+            <div class="stat"><b>8+</b><span>Projects shipped end-to-end</span></div>
+            <div class="stat"><b>18×</b><span>GPU speedup vs. NumPy</span></div>
+            <div class="stat"><b>50k+</b><span>SKUs forecast with ML</span></div>
+            <div class="stat"><b>24/7</b><span>Automations running</span></div>
+        </div>
+    </div>
+
+    <!-- About -->
+    <section id="about" class="section about">
+        <div class="container about-grid">
+            <div class="reveal">
+                <div class="eyebrow">About me</div>
+                <h2>I build at the intersection of AI, security, and automation.</h2>
+                <p>I'm a Computer Science &amp; Cybersecurity student at Slippery Rock University and an AI researcher with Algoverse. I care about taking research-grade ideas and shipping them as things that actually work — fast, reliable, and useful.</p>
+                <p>Lately I've been deep in LLM agents, reinforcement learning, and AI-driven automation with n8n, with a soft spot for low-level performance work on the GPU.</p>
+                <ul class="about-list">
+                    <li><i class="fas fa-circle-check"></i> AI researcher building multi-agent and reasoning systems</li>
+                    <li><i class="fas fa-circle-check"></i> Automating real workflows end-to-end with n8n + LLMs</li>
+                    <li><i class="fas fa-circle-check"></i> Comfortable from CUDA kernels up to full-stack web</li>
+                    <li><i class="fas fa-circle-check"></i> Off the keyboard: mountain biking, hiking, and gaming</li>
+                </ul>
+            </div>
+            <div class="about-visual reveal">
+                <p class="av-quote">"Ship the idea, not just the slide deck. The best way to understand something is to build it and watch it run."</p>
+                <div class="av-chips">
+                    <span class="av-chip">AI Research</span>
+                    <span class="av-chip">Machine Learning</span>
+                    <span class="av-chip">Automation</span>
+                    <span class="av-chip">Cybersecurity</span>
+                    <span class="av-chip">GPU Computing</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA -->
+    <div class="cta-wrap">
+        <div class="container reveal">
+            <div class="cta">
+                <span class="orb orb-1"></span>
+                <span class="orb orb-2"></span>
+                <div class="cta-inner">
+                    <h2>Let's build something <span class="grad-text">worth running.</span></h2>
+                    <p>Whether it's an AI research collaboration, an internship, or an automation idea you can't stop thinking about — I'd love to hear it.</p>
+                    <div class="hero-buttons">
+                        <a href="mailto:kochnolan376@gmail.com" class="btn btn-primary"><i class="fas fa-paper-plane"></i> Start a conversation</a>
+                        <a href="https://github.com/nkoch33" class="btn btn-ghost" target="_blank" rel="noopener noreferrer"><i class="fab fa-github"></i> See my code</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer / Contact -->
+    <footer id="contact">
+        <div class="container foot-grid">
+            <div>
+                <a href="#home" class="nav-logo" style="margin-bottom: 0.6rem;">
+                    <span class="nav-mark">N</span>
+                    <span>Nolan Koch</span>
+                </a>
+                <p class="foot-note" style="margin-top:0.6rem;">CS &amp; Cybersecurity Student · AI Builder · Slippery Rock University</p>
+            </div>
+            <div class="foot-links">
+                <a href="mailto:kochnolan376@gmail.com" class="foot-link" aria-label="Email"><i class="fas fa-envelope"></i></a>
+                <a href="https://www.linkedin.com/in/nolankoch" class="foot-link" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+                <a href="https://github.com/nkoch33" class="foot-link" target="_blank" rel="noopener noreferrer" aria-label="GitHub"><i class="fab fa-github"></i></a>
+            </div>
+        </div>
+        <div class="container" style="margin-top:2rem;">
+            <p class="foot-note">© <span id="year"></span> Nolan Koch. Built from scratch with HTML, CSS &amp; JavaScript.</p>
+        </div>
+    </footer>
+
+    <!-- Lightbox -->
+    <div class="lightbox" id="lightbox">
+        <button class="lightbox-close" onclick="closeLightbox()" aria-label="Close">&times;</button>
+        <img id="lightboxImg" src="" alt="Project preview">
+    </div>
+
     <script>
-        // Lightbox Functions
-        function openLightbox(imageSrc) {
-            const lightbox = document.getElementById('lightbox');
-            const lightboxImg = document.getElementById('lightbox-img');
-            lightboxImg.src = imageSrc;
-            lightbox.classList.add('active');
-            document.body.style.overflow = 'hidden';
-        }
+        // Year
+        document.getElementById('year').textContent = new Date().getFullYear();
 
-        function closeLightbox() {
-            const lightbox = document.getElementById('lightbox');
-            lightbox.classList.remove('active');
-            document.body.style.overflow = 'auto';
-        }
+        // Mobile nav toggle
+        const navToggle = document.getElementById('navToggle');
+        const navMenu = document.getElementById('navMenu');
+        navToggle.addEventListener('click', () => navMenu.classList.toggle('open'));
+        navMenu.querySelectorAll('a').forEach(a => a.addEventListener('click', () => navMenu.classList.remove('open')));
 
-        // Close lightbox when clicking outside the image
-        document.getElementById('lightbox').addEventListener('click', function(e) {
-            if (e.target === this) {
-                closeLightbox();
-            }
-        });
-
-        // Close lightbox with Escape key
-        document.addEventListener('keydown', function(e) {
-            if (e.key === 'Escape') {
-                closeLightbox();
-            }
-        });
-
-        // Fast Smooth Scrolling
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                const target = this.getAttribute('href');
-                smoothScrollTo(target, 300); // Even faster for direct clicks
-            });
-        });
-
-
-
-        // Navbar Scroll Effect
+        // Navbar scrolled state + progress bar
+        const navbar = document.getElementById('navbar');
+        const progress = document.querySelector('.scroll-progress');
         window.addEventListener('scroll', () => {
-            const navbar = document.querySelector('.navbar');
-            const scrollProgress = document.querySelector('.scroll-progress');
-            
-            // Navbar background effect
-            if (window.scrollY > 100) {
-                navbar.style.background = 'rgba(10, 24, 40, 0.98)';
-                navbar.style.boxShadow = '0 4px 20px rgba(10, 24, 40, 0.6)';
-            } else {
-                navbar.style.background = 'rgba(10, 24, 40, 0.95)';
-                navbar.style.boxShadow = '0 4px 20px rgba(10, 24, 40, 0.4)';
-            }
-
-            // Scroll progress bar
-            const scrollPercent = (window.scrollY / (document.documentElement.scrollHeight - window.innerHeight)) * 100;
-            scrollProgress.style.width = scrollPercent + '%';
+            navbar.classList.toggle('scrolled', window.scrollY > 20);
+            const h = document.documentElement.scrollHeight - window.innerHeight;
+            progress.style.width = (window.scrollY / h) * 100 + '%';
         });
 
-        // Enhanced Scroll Animations with Intersection Observer
-        const observerOptions = {
-            threshold: 0.1,
-            rootMargin: '0px 0px -50px 0px'
-        };
-
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    // Add staggered animations based on element type
-                    if (entry.target.classList.contains('project-card')) {
-                        entry.target.style.animationDelay = Math.random() * 0.5 + 's';
-                    }
-                    entry.target.classList.add('fade-in');
-                }
-            });
-        }, observerOptions);
-
-        // Observe all elements that should animate
-        document.querySelectorAll('.project-card, .contact-item, .section-header').forEach(el => {
-            observer.observe(el);
-        });
-
-        // Enhanced Project Filtering with smooth transitions
-        class ProjectFilter {
-            constructor() {
-                this.categoryButtons = document.querySelectorAll('.category-btn');
-                this.projectCards = document.querySelectorAll('.project-card');
-                this.initializeFiltering();
-            }
-
-            initializeFiltering() {
-                this.categoryButtons.forEach(button => {
-                    button.addEventListener('click', () => {
-                        const category = button.getAttribute('data-category');
-                        this.filterProjects(category);
-                        this.updateActiveButton(button);
-                    });
+        // Project filtering
+        const filterBtns = document.querySelectorAll('.filter-btn');
+        const cards = document.querySelectorAll('.project-card');
+        filterBtns.forEach(btn => {
+            btn.addEventListener('click', () => {
+                filterBtns.forEach(b => b.classList.remove('active'));
+                btn.classList.add('active');
+                const f = btn.dataset.filter;
+                cards.forEach(card => {
+                    const show = f === 'all' || card.dataset.category === f;
+                    card.style.display = show ? 'flex' : 'none';
+                    if (show) { card.classList.remove('in'); requestAnimationFrame(() => card.classList.add('in')); }
                 });
-            }
-
-            filterProjects(category) {
-                this.projectCards.forEach((card, index) => {
-                    const cardCategory = card.getAttribute('data-category');
-                    
-                    if (category === 'all' || cardCategory === category) {
-                        card.style.display = 'block';
-                        // Stagger the animation
-                        setTimeout(() => {
-                            card.classList.add('fade-in');
-                            card.style.transform = 'translateY(0)';
-                        }, index * 100);
-                    } else {
-                        card.classList.remove('fade-in');
-                        card.style.transform = 'translateY(20px)';
-                        setTimeout(() => {
-                            card.style.display = 'none';
-                        }, 300);
-                    }
-                });
-            }
-
-            updateActiveButton(activeButton) {
-                this.categoryButtons.forEach(button => {
-                    button.classList.remove('active');
-                });
-                activeButton.classList.add('active');
-            }
-        }
-
-        // Initialize Project Filter
-        const projectFilter = new ProjectFilter();
-
-        // Enhanced Typing Animation with cursor effect
-        function typeWriter(element, text, speed = 100) {
-            let i = 0;
-            element.textContent = '';
-            
-            // Add cursor element
-            const cursor = document.createElement('span');
-            cursor.textContent = '|';
-            cursor.style.color = 'white';
-            cursor.style.animation = 'pulse 1s infinite';
-            element.appendChild(cursor);
-            
-            function type() {
-                if (i < text.length) {
-                    element.insertBefore(document.createTextNode(text.charAt(i)), cursor);
-                    i++;
-                    setTimeout(type, speed);
-                } else {
-                    // Remove cursor after typing is complete
-                    setTimeout(() => {
-                        cursor.remove();
-                    }, 1000);
-                }
-            }
-            type();
-        }
-
-        // Initialize typing animation when page loads
-        document.addEventListener('DOMContentLoaded', () => {
-            const heroTitle = document.querySelector('.hero-title');
-            if (heroTitle) {
-                setTimeout(() => {
-                    typeWriter(heroTitle, 'Nolan Koch', 150);
-                }, 1000);
-            }
-        });
-
-        // Enhanced Hover Effects for Project Cards
-        document.querySelectorAll('.project-card').forEach(card => {
-            card.addEventListener('mouseenter', function() {
-                this.style.transform = 'translateY(-10px) scale(1.02)';
-            });
-            
-            card.addEventListener('mouseleave', function() {
-                this.style.transform = 'translateY(0) scale(1)';
             });
         });
 
-        // Enhanced Button Hover Effects
-        document.querySelectorAll('.btn').forEach(btn => {
-            btn.addEventListener('mouseenter', function() {
-                this.style.transform = 'translateY(-3px) scale(1.05)';
-            });
-            
-            btn.addEventListener('mouseleave', function() {
-                this.style.transform = 'translateY(0) scale(1)';
-            });
-        });
-
-        // Parallax Effect for Hero Section
-        window.addEventListener('scroll', () => {
-            const scrolled = window.pageYOffset;
-            const hero = document.querySelector('.hero');
-            if (hero) {
-                hero.style.transform = `translateY(${scrolled * 0.5}px)`;
-            }
-        });
-
-        // Enhanced Tech Tag Interactions
-        document.querySelectorAll('.tech-tag').forEach(tag => {
-            tag.addEventListener('mouseenter', function() {
-                this.style.transform = 'translateY(-2px) scale(1.05)';
-            });
-            
-            tag.addEventListener('mouseleave', function() {
-                this.style.transform = 'translateY(0) scale(1)';
-            });
-        });
-
-        // Smooth reveal animation for sections
-        const revealSections = document.querySelectorAll('.projects, .about, .contact');
+        // Reveal on scroll
         const revealObserver = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.style.opacity = '1';
-                    entry.target.style.transform = 'translateY(0)';
-                }
-            });
-        }, { threshold: 0.1 });
+            entries.forEach(entry => { if (entry.isIntersecting) { entry.target.classList.add('in'); revealObserver.unobserve(entry.target); } });
+        }, { threshold: 0.12, rootMargin: '0px 0px -60px 0px' });
+        document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
 
-        revealSections.forEach(section => {
-            section.style.opacity = '0';
-            section.style.transform = 'translateY(30px)';
-            section.style.transition = 'all 0.8s ease';
-            revealObserver.observe(section);
-        });
-
-        // Enhanced Navigation Interactions
-        document.querySelectorAll('.nav-link').forEach(link => {
-            link.addEventListener('mouseenter', function() {
-                this.style.transform = 'translateY(-2px)';
-            });
-            
-            link.addEventListener('mouseleave', function() {
-                this.style.transform = 'translateY(0)';
-            });
-        });
-
-        // Code Block Line Highlighting
-        document.querySelectorAll('.code-line').forEach(line => {
-            line.addEventListener('mouseenter', function() {
-                this.style.backgroundColor = 'rgba(255, 255, 255, 0.1)';
-                this.style.borderRadius = '4px';
-                this.style.padding = '2px 8px';
-            });
-            
-            line.addEventListener('mouseleave', function() {
-                this.style.backgroundColor = 'transparent';
-                this.style.padding = '0';
-            });
-        });
-
-        // Enhanced Contact Item Interactions
-        document.querySelectorAll('.contact-item').forEach(item => {
-            item.addEventListener('mouseenter', function() {
-                this.style.transform = 'translateY(-8px) scale(1.02)';
-            });
-            
-            item.addEventListener('mouseleave', function() {
-                this.style.transform = 'translateY(0) scale(1)';
-            });
-        });
-
-        // Fast smooth scroll with easing
-        function smoothScrollTo(target, duration = 400) {
-            const targetElement = document.querySelector(target);
-            if (!targetElement) return;
-            
-            const targetPosition = targetElement.offsetTop - 80;
-            const startPosition = window.pageYOffset;
-            const distance = targetPosition - startPosition;
-            let startTime = null;
-
-            function animation(currentTime) {
-                if (startTime === null) startTime = currentTime;
-                const timeElapsed = currentTime - startTime;
-                const run = ease(timeElapsed, startPosition, distance, duration);
-                window.scrollTo(0, run);
-                if (timeElapsed < duration) requestAnimationFrame(animation);
-            }
-
-            function ease(t, b, c, d) {
-                t /= d / 2;
-                if (t < 1) return c / 2 * t * t + b;
-                t--;
-                return -c / 2 * (t * (t - 2) - 1) + b;
-            }
-
-            requestAnimationFrame(animation);
-        }
-
-        // Enhanced smooth scrolling
+        // Smooth scroll for in-page anchors
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function (e) {
+                const id = this.getAttribute('href');
+                if (id.length <= 1) return;
+                const target = document.querySelector(id);
+                if (!target) return;
                 e.preventDefault();
-                const target = this.getAttribute('href');
-                smoothScrollTo(target);
+                window.scrollTo({ top: target.offsetTop - 70, behavior: 'smooth' });
             });
         });
 
-        // Security: Prevent clickjacking
-        if (window.top !== window.self) {
-            window.top.location = window.self.location;
-        }
-
-        // Security: Disable right-click context menu
-        document.addEventListener('contextmenu', (e) => {
-            e.preventDefault();
-        });
-
-        // Security: Disable text selection (optional - remove if you want users to be able to select text)
-        document.addEventListener('selectstart', (e) => {
-            e.preventDefault();
-        });
+        // Lightbox
+        const lightbox = document.getElementById('lightbox');
+        const lightboxImg = document.getElementById('lightboxImg');
+        function openLightbox(src) { lightboxImg.src = src; lightbox.classList.add('active'); document.body.style.overflow = 'hidden'; }
+        function closeLightbox() { lightbox.classList.remove('active'); document.body.style.overflow = ''; }
+        lightbox.addEventListener('click', (e) => { if (e.target === lightbox) closeLightbox(); });
+        document.addEventListener('keydown', (e) => { if (e.key === 'Escape') closeLightbox(); });
     </script>
 </body>
-</html> 
-</html> 
-
-
+</html>
