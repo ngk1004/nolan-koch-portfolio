@@ -2,6 +2,8 @@
 
 A clean and responsive personal portfolio built with HTML, CSS, and JavaScript. Designed to showcase projects, skills, and provide an easy way for others to reach out.
 
+[![Commitizen friendly](https://img.shields.io/badge/commitizen-friendly-brightgreen.svg)](http://commitizen.github.io/cz-cli/)
+
 ## Live Demo
 
 [View Website](https://nkoch33.github.io/nolan-koch-portfolio/)  
