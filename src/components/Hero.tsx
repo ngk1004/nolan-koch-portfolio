@@ -1,4 +1,4 @@
-import { imageSrc, site } from '../data/site'
+import { imageSrc, resumeSrc, site } from '../data/site'
 
 export default function Hero() {
   return (
@@ -18,16 +18,18 @@ export default function Hero() {
         </p>
         <div className="mt-10 flex flex-wrap gap-3">
           <a
-            href="#work"
+            href="#experience"
             className="bg-[var(--lime)] px-5 py-2.5 font-mono text-[11px] uppercase tracking-[0.16em] text-[var(--ink)]"
           >
-            View work
+            Experience
           </a>
           <a
-            href={`mailto:${site.email}`}
+            href={resumeSrc()}
+            target="_blank"
+            rel="noreferrer"
             className="border border-[var(--line)] px-5 py-2.5 font-mono text-[11px] uppercase tracking-[0.16em] text-[var(--paper)] hover:border-[var(--lime)] hover:text-[var(--lime)]"
           >
-            Email
+            Resume
           </a>
         </div>
       </div>

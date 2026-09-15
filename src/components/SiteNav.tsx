@@ -2,15 +2,16 @@ import { useEffect, useState } from 'react'
 import { site } from '../data/site'
 
 const links = [
-  { href: '#work', id: 'work', label: 'Work' },
   { href: '#research', id: 'research', label: 'Research' },
+  { href: '#experience', id: 'experience', label: 'Experience' },
+  { href: '#work', id: 'work', label: 'Work' },
   { href: '#stack', id: 'stack', label: 'Stack' },
   { href: '#contact', id: 'contact', label: 'Contact' },
 ] as const
 
 export default function SiteNav() {
   const [scrolled, setScrolled] = useState(false)
-  const [active, setActive] = useState<string>('work')
+  const [active, setActive] = useState<string>('research')
   const [open, setOpen] = useState(false)
 
   useEffect(() => {
