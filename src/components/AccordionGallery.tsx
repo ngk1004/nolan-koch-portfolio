@@ -13,6 +13,8 @@ import { gsap } from 'gsap'
 export type AccordionGalleryItem = {
   id: string
   label: string
+  /** Short label shown on collapsed vertical strips. */
+  spine?: string
   link?: string
   alt?: string
   media: ReactNode
@@ -59,7 +61,7 @@ export default function AccordionGallery({
   stagger = 0.04,
   trigger = 'hover',
   showLabels = true,
-  grayscale = true,
+  grayscale = false,
   className = '',
   onActiveChange,
 }: AccordionGalleryProps) {
@@ -95,7 +97,7 @@ export default function AccordionGallery({
       ? window.matchMedia('(prefers-reduced-motion: reduce)').matches
       : false
 
-  const overlayBg = `linear-gradient(180deg, transparent 42%, color-mix(in srgb, ${overlayColor} 82%, transparent) 100%), color-mix(in srgb, ${overlayColor} calc(var(--ag-dim, 0.35) * 100%), transparent)`
+  const overlayBg = `linear-gradient(180deg, transparent 62%, color-mix(in srgb, ${overlayColor} 55%, transparent) 100%)`
 
   const applyLayout = useCallback(
     (animate: boolean) => {
@@ -124,17 +126,16 @@ export default function AccordionGallery({
 
         if (media) {
           const drift = Math.max(-1.5, Math.min(1.5, active - i))
-          const shift = drift * parallax * mediaSize * 0.06
+          const shift = drift * parallax * mediaSize * 0.04
           const gray = grayscale ? (isActive ? 0 : 1) : 0
           tl.to(
             media,
             {
-              xPercent: -50,
-              yPercent: -50,
+              scale: isActive ? 1 : 1.02,
               x: vertical ? 0 : isActive ? 0 : shift,
               y: vertical ? (isActive ? 0 : shift) : 0,
               '--ag-gray': gray,
-              '--ag-dim': isActive ? 0 : 0.4,
+              '--ag-dim': 0,
               duration: dur,
               ease,
             },
@@ -279,12 +280,8 @@ export default function AccordionGallery({
                 ref={(el: HTMLElement | null) => {
                   mediaRefs.current[i] = el
                 }}
-                className="absolute top-1/2 left-1/2 [filter:grayscale(var(--ag-gray,1))]"
-                style={{
-                  width: vertical ? '100%' : 'var(--ag-media-size, 320px)',
-                  height: vertical ? 'var(--ag-media-size, 320px)' : '100%',
-                  willChange: 'transform, filter',
-                }}
+                className="absolute inset-0 [filter:grayscale(var(--ag-gray,0))] [transform-origin:center]"
+                style={{ willChange: 'transform, filter' }}
               >
                 {item.media}
               </span>
@@ -294,6 +291,19 @@ export default function AccordionGallery({
                 aria-hidden="true"
               />
             </span>
+            {!isActive && (item.spine || item.label) && (
+              <span
+                className="pointer-events-none absolute inset-x-0 bottom-3 top-3 z-[2] flex justify-center"
+                aria-hidden="true"
+              >
+                <span
+                  className="font-mono text-[10px] uppercase tracking-[0.2em] [writing-mode:vertical-rl] [text-orientation:mixed]"
+                  style={{ color: accentColor }}
+                >
+                  {item.spine || item.label}
+                </span>
+              </span>
+            )}
             {showLabels && (
               <span
                 className="pointer-events-none absolute right-4 bottom-4 left-4 z-[2] flex items-center gap-3"
