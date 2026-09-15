@@ -1,7 +1,8 @@
 #!/usr/bin/env python3
 """
-Simple HTTP server for serving the portfolio website locally.
-Run this script and open http://localhost:8000 in your browser.
+Simple HTTP server for serving the Lithos site locally.
+Serves the Vite build output from dist/ when present, otherwise the repo root.
+Run: npm run build && python3 server.py
 """
 
 import http.server
@@ -10,48 +11,49 @@ import os
 import webbrowser
 from pathlib import Path
 
-# Configuration
 PORT = 8000
-DIRECTORY = Path(__file__).parent
+ROOT = Path(__file__).parent
+DIST = ROOT / "dist"
+DIRECTORY = DIST if DIST.is_dir() else ROOT
+
 
 class CustomHTTPRequestHandler(http.server.SimpleHTTPRequestHandler):
     def __init__(self, *args, **kwargs):
         super().__init__(*args, directory=str(DIRECTORY), **kwargs)
-    
+
     def end_headers(self):
-        # Add CORS headers for development
-        self.send_header('Access-Control-Allow-Origin', '*')
-        self.send_header('Access-Control-Allow-Methods', 'GET, POST, OPTIONS')
-        self.send_header('Access-Control-Allow-Headers', 'Content-Type')
+        self.send_header("Access-Control-Allow-Origin", "*")
+        self.send_header("Access-Control-Allow-Methods", "GET, POST, OPTIONS")
+        self.send_header("Access-Control-Allow-Headers", "Content-Type")
         super().end_headers()
 
+
 def main():
-    """Start the HTTP server and open the website in browser."""
-    
-    # Change to the directory containing this script
     os.chdir(DIRECTORY)
-    
-    # Create server
+
+    if DIRECTORY == DIST:
+        print(f"Serving production build from: {DIST}")
+    else:
+        print("dist/ not found — serving repo root.")
+        print("For the Lithos hero, run: npm run build && python3 server.py")
+        print("For development, use: npm run dev")
+
     with socketserver.TCPServer(("", PORT), CustomHTTPRequestHandler) as httpd:
-        print(f"🟢 Portfolio server started!")
-        print(f" Serving files from: {DIRECTORY}")
-        print(f" Open your browser and go to: http://localhost:{PORT}")
-        print(f"  Press Ctrl+C to stop the server")
+        print(f"Open http://localhost:{PORT}")
+        print("Press Ctrl+C to stop.")
         print("-" * 50)
-        
-        # Try to open the website automatically
+
         try:
-            webbrowser.open(f'http://localhost:{PORT}')
-            print(" Browser opened automatically!")
-        except:
-            print("  Could not open browser automatically. Please open it manually.")
-        
-        # Start serving
+            webbrowser.open(f"http://localhost:{PORT}")
+        except OSError:
+            pass
+
         try:
             httpd.serve_forever()
         except KeyboardInterrupt:
-            print("\n🔴 Server stopped by user.")
+            print("\nServer stopped.")
             httpd.shutdown()
 
+
 if __name__ == "__main__":
-    main() 
+    main()
