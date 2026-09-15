@@ -80,7 +80,7 @@ export const site = {
   headline: 'Research that ships.',
   subtext:
     'Pittsburgh-based cybersecurity student shipping full-stack products, GPU systems, and secure automation.',
-  location: 'Pittsburgh, PA · Open to remote',
+  location: 'Pittsburgh, PA',
   email: 'kochnolan376@gmail.com',
   github: 'https://github.com/ngk1004',
   resume: 'Nolan-Koch-Resume.pdf',
@@ -97,7 +97,7 @@ export const site = {
       id: 'qintel',
       org: 'Qintel',
       role: 'Full-Stack Software Engineering Intern',
-      dates: 'May 2026 – Present',
+      dates: 'May 2026 - Present',
       highlights: [
         'Built React + Node visualizations used by 100,000+ cyber intelligence users.',
         'Shipped a query scope guard that cancels oversized searches and asks users to refine.',
@@ -108,7 +108,7 @@ export const site = {
       id: 'broma',
       org: 'Broma',
       role: 'Full-Stack Engineer',
-      dates: 'Oct 2025 – May 2026',
+      dates: 'Oct 2025 - May 2026',
       highlights: [
         'Architected a multi-tenant React + Supabase B2B portal for vendor CRM and campaign analytics.',
         'Built Gemini + vector semantic search so diners find places in plain language.',
@@ -120,7 +120,7 @@ export const site = {
       id: 'westinghouse',
       org: 'Westinghouse Electric Company',
       role: 'Linux Systems Administrator Intern',
-      dates: 'May 2025 – May 2026',
+      dates: 'May 2025 - May 2026',
       highlights: [
         'Automated Python/Bash CVE patching across 50+ RHEL nodes and cut zero-day exposure ~30%.',
         'Audited configs against NIST 800-53 with security teams for audit readiness.',
@@ -139,7 +139,7 @@ export const site = {
       id: 'trusted-ci',
       org: 'Trusted CI Scholars Program',
       role: 'NSF Cybersecurity Scholar',
-      dates: 'May 2026 – Nov 2026',
+      dates: 'May 2026 - Nov 2026',
       highlights: [
         'Selected for a competitive NSF cybersecurity fellowship.',
         'Representing the cohort at the NSF Cybersecurity Summit in Irvine, CA.',
