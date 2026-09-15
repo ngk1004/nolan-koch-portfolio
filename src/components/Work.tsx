@@ -7,6 +7,7 @@ import {
   projectsForLane,
   site,
   type ProjectFilter,
+  type ProjectVisual,
 } from '../data/site'
 import { useReveal } from '../hooks/useReveal'
 
@@ -18,6 +19,36 @@ const LANE_LABEL: Record<ProjectFilter, string> = {
   ml: 'ML',
   security: 'Security',
   web: 'Web',
+}
+
+function ProjectMedia({ visual }: { visual: ProjectVisual }) {
+  switch (visual.kind) {
+    case 'image':
+      return (
+        <div className="aspect-[16/10] overflow-hidden border-b border-[var(--line)]">
+          <img
+            src={imageSrc(visual.src)}
+            alt={visual.alt}
+            className="project-visual-img h-full w-full object-cover"
+          />
+        </div>
+      )
+    case 'metric':
+      return (
+        <div className="flex aspect-[16/10] flex-col justify-end border-b border-[var(--line)] bg-[var(--ink)] px-5 py-6">
+          <p className="font-display text-[clamp(2.4rem,6vw,3.6rem)] leading-none tracking-tight text-[var(--lime)]">
+            {visual.value}
+          </p>
+          <p className="mt-3 max-w-[18ch] font-mono text-[11px] uppercase tracking-[0.14em] text-[var(--mute)]">
+            {visual.label}
+          </p>
+        </div>
+      )
+    default: {
+      const _exhaustive: never = visual
+      return _exhaustive
+    }
+  }
 }
 
 export default function Work() {
@@ -65,10 +96,10 @@ export default function Work() {
               key={item}
               type="button"
               onClick={() => setLane(item)}
-              className={`font-mono text-[10px] uppercase tracking-[0.16em] ${
+              className={`pressable font-mono text-[10px] uppercase tracking-[0.16em] ${
                 lane === item
                   ? 'bg-[var(--lime)] px-3 py-1.5 text-[var(--ink)]'
-                  : 'border border-[var(--line)] px-3 py-1.5 text-[var(--mute)] hover:text-[var(--paper)]'
+                  : 'border border-[var(--line)] px-3 py-1.5 text-[var(--mute)]'
               }`}
             >
               {LANE_LABEL[item]}
@@ -82,19 +113,11 @@ export default function Work() {
           <li
             key={project.id}
             id={`project-${project.id}`}
-            className={`group border border-[var(--line)] bg-[var(--panel)] transition-colors ${
+            className={`group border border-[var(--line)] bg-[var(--panel)] ${
               highlight === project.id ? 'border-[var(--lime)]' : ''
             }`}
           >
-            {project.image ? (
-              <div className="aspect-[16/10] overflow-hidden border-b border-[var(--line)]">
-                <img
-                  src={imageSrc(project.image)}
-                  alt=""
-                  className="h-full w-full object-cover transition duration-500 group-hover:scale-[1.03]"
-                />
-              </div>
-            ) : null}
+            <ProjectMedia visual={project.visual} />
             <div className="p-5 sm:p-6">
               <p className="font-mono text-[10px] uppercase tracking-[0.16em] text-[var(--mute)]">
                 {isProjectLane(project.lane) ? LANE_LABEL[project.lane] : project.lane}
@@ -120,7 +143,7 @@ export default function Work() {
                 href={project.href}
                 target="_blank"
                 rel="noreferrer"
-                className="mt-5 inline-block font-mono text-[11px] uppercase tracking-[0.16em] text-[var(--lime)]"
+                className="pressable mt-5 inline-block font-mono text-[11px] uppercase tracking-[0.16em] text-[var(--lime)]"
               >
                 GitHub
               </a>

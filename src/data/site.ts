@@ -10,6 +10,10 @@ export const PROJECT_LANES = [
   'web',
 ] as const satisfies readonly ProjectLane[]
 
+export type ProjectVisual =
+  | { kind: 'image'; src: string; alt: string }
+  | { kind: 'metric'; value: string; label: string }
+
 export type Project = {
   id: ProjectId
   title: string
@@ -18,7 +22,7 @@ export type Project = {
   lane: ProjectLane
   tags: string[]
   href: string
-  image?: string
+  visual: ProjectVisual
 }
 
 export type Research = {
@@ -163,7 +167,7 @@ export const site = {
       lane: 'systems',
       tags: ['CUDA', 'C++', 'GPU'],
       href: 'https://github.com/ngk1004/CUDA-Parallel-Matrix-Multiplication',
-      image: 'cuda-matrix-diagram.png',
+      visual: { kind: 'metric', value: '18×', label: 'vs NumPy tiled kernel' },
     },
     {
       id: 'support-agent',
@@ -174,7 +178,7 @@ export const site = {
       lane: 'agents',
       tags: ['RAG', 'LLM', 'vector memory'],
       href: 'https://github.com/ngk1004/Autonomous-support-agent-with-vector-memory',
-      image: 'proj-n8n-automation.png',
+      visual: { kind: 'metric', value: 'RAG', label: 'persistent multi-turn recall' },
     },
     {
       id: 'devsecops',
@@ -185,7 +189,11 @@ export const site = {
       lane: 'security',
       tags: ['DevSecOps', 'CI', 'triage'],
       href: 'https://github.com/ngk1004/DevSec-Ops-Auto-Triage-Pipeline-',
-      image: 'waf-screenshot1.png',
+      visual: {
+        kind: 'image',
+        src: 'waf-screenshot1.png',
+        alt: 'DevSecOps WAF triage demo UI with blocked findings',
+      },
     },
     {
       id: 'etl',
@@ -196,7 +204,7 @@ export const site = {
       lane: 'data',
       tags: ['ETL', 'MySQL', 'HubSpot'],
       href: 'https://github.com/ngk1004/ETL-Pipeline',
-      image: 'proj-train-of-thought.png',
+      visual: { kind: 'metric', value: '50k', label: 'records synced nightly' },
     },
     {
       id: 'temporal-router',
@@ -207,7 +215,7 @@ export const site = {
       lane: 'systems',
       tags: ['Temporal', 'TypeScript', 'Postgres'],
       href: 'https://github.com/ngk1004/Zero-Touch-Employee-Provisioning',
-      image: 'proj-portfolio-website.png',
+      visual: { kind: 'metric', value: '0 loss', label: 'orders survive outages' },
     },
     {
       id: 'yolo-cv',
@@ -218,7 +226,11 @@ export const site = {
       lane: 'ml',
       tags: ['YOLOv8', 'OpenCV', 'Flask'],
       href: 'https://github.com/ngk1004/Computer-Vision-Object-Detection',
-      image: 'car-detection.png',
+      visual: {
+        kind: 'image',
+        src: 'car-detection.png',
+        alt: 'YOLO bounding boxes on cars in a street photo',
+      },
     },
     {
       id: 'inventory',
@@ -229,7 +241,7 @@ export const site = {
       lane: 'ml',
       tags: ['LSTM', 'Prophet', 'Python'],
       href: 'https://github.com/ngk1004/Inventory-Demand-Forecasting',
-      image: 'proj-inventory-forecasting.png',
+      visual: { kind: 'metric', value: 'LSTM', label: 'Prophet + sales history' },
     },
   ],
   stack: [

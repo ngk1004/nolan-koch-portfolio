@@ -1,7 +1,11 @@
-import { resumeSrc, site } from '../data/site'
+import { site } from '../data/site'
 import { useReveal } from '../hooks/useReveal'
 
-export default function Experience() {
+type ExperienceProps = {
+  onOpenResume: () => void
+}
+
+export default function Experience({ onOpenResume }: ExperienceProps) {
   const { ref, visible } = useReveal()
 
   return (
@@ -15,14 +19,13 @@ export default function Experience() {
           <h2 className="font-display text-[clamp(1.8rem,4vw,2.8rem)] tracking-tight text-[var(--paper)]">
             Experience
           </h2>
-          <a
-            href={resumeSrc()}
-            target="_blank"
-            rel="noreferrer"
-            className="font-mono text-[11px] uppercase tracking-[0.16em] text-[var(--lime)]"
+          <button
+            type="button"
+            onClick={onOpenResume}
+            className="pressable font-mono text-[11px] uppercase tracking-[0.16em] text-[var(--lime)]"
           >
-            Download resume PDF
-          </a>
+            Resume
+          </button>
         </div>
 
         <ol className="mt-12 divide-y divide-[var(--line)] border-y border-[var(--line)]">
