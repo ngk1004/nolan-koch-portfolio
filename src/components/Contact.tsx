@@ -1,7 +1,11 @@
-import { resumeSrc, site } from '../data/site'
+import { site } from '../data/site'
 import { useReveal } from '../hooks/useReveal'
 
-export default function Contact() {
+type ContactProps = {
+  onOpenResume: () => void
+}
+
+export default function Contact({ onOpenResume }: ContactProps) {
   const { ref, visible } = useReveal()
 
   return (
@@ -23,14 +27,13 @@ export default function Contact() {
           <a href={`mailto:${site.email}`} className="text-[var(--lime)]">
             {site.email}
           </a>
-          <a
-            href={resumeSrc()}
-            target="_blank"
-            rel="noreferrer"
-            className="text-[var(--paper)] hover:text-[var(--lime)]"
+          <button
+            type="button"
+            onClick={onOpenResume}
+            className="pressable text-left text-[var(--paper)]"
           >
-            Download resume
-          </a>
+            Resume
+          </button>
           <a
             href={site.github}
             target="_blank"

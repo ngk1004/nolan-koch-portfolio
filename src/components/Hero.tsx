@@ -1,6 +1,11 @@
-import { imageSrc, resumeSrc, site } from '../data/site'
+import { site } from '../data/site'
+import HeroSchematic from './HeroSchematic'
 
-export default function Hero() {
+type HeroProps = {
+  onOpenResume: () => void
+}
+
+export default function Hero({ onOpenResume }: HeroProps) {
   return (
     <section
       id="top"
@@ -19,29 +24,20 @@ export default function Hero() {
         <div className="mt-10 flex flex-wrap gap-3">
           <a
             href="#experience"
-            className="bg-[var(--lime)] px-5 py-2.5 font-mono text-[11px] uppercase tracking-[0.16em] text-[var(--ink)]"
+            className="pressable bg-[var(--lime)] px-5 py-2.5 font-mono text-[11px] uppercase tracking-[0.16em] text-[var(--ink)]"
           >
             Experience
           </a>
-          <a
-            href={resumeSrc()}
-            target="_blank"
-            rel="noreferrer"
-            className="border border-[var(--line)] px-5 py-2.5 font-mono text-[11px] uppercase tracking-[0.16em] text-[var(--paper)] hover:border-[var(--lime)] hover:text-[var(--lime)]"
+          <button
+            type="button"
+            onClick={onOpenResume}
+            className="pressable border border-[var(--line)] px-5 py-2.5 font-mono text-[11px] uppercase tracking-[0.16em] text-[var(--paper)]"
           >
             Resume
-          </a>
+          </button>
         </div>
       </div>
-      <div className="hero-visual relative min-h-[42vh] lg:min-h-full">
-        <img
-          src={imageSrc('cuda-matrix-diagram.png')}
-          alt="CUDA tiled matrix multiply diagram"
-          className="absolute inset-0 h-full w-full object-cover object-left opacity-80"
-        />
-        <div className="hero-grain pointer-events-none absolute inset-0" />
-        <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-[var(--ink)] via-transparent to-[var(--ink)]/40 lg:bg-gradient-to-l" />
-      </div>
+      <HeroSchematic />
     </section>
   )
 }

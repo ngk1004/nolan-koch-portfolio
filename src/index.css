@@ -9,6 +9,7 @@
   --lime: #d4ff58;
   --lime-dim: rgba(212, 255, 88, 0.12);
   --line: hsla(36, 25%, 88%, 0.1);
+  --ease-out: cubic-bezier(0.23, 1, 0.32, 1);
   --font-display: 'Outfit', system-ui, sans-serif;
   --font-body: 'Outfit', system-ui, sans-serif;
   --font-mono: 'IBM Plex Mono', ui-monospace, monospace;
@@ -44,20 +45,39 @@ body::before {
   font-family: var(--font-mono);
 }
 
-.hero-grain {
-  opacity: 0.2;
-  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+.hero-visual {
+  background-color: var(--ink);
+  background-image: radial-gradient(circle, color-mix(in srgb, var(--lime) 22%, transparent) 1px, transparent 1.5px);
+  background-size: 18px 18px;
+}
+
+.pressable {
+  transition: transform 160ms var(--ease-out);
+}
+
+.pressable:active {
+  transform: scale(0.97);
 }
 
 .reveal-block {
   opacity: 0;
-  transform: translateY(16px);
-  transition: opacity 0.65s ease, transform 0.65s ease;
+  transform: translateY(8px);
+  transition: opacity 240ms var(--ease-out), transform 240ms var(--ease-out);
 }
 
 .reveal-block.is-visible {
   opacity: 1;
   transform: none;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .project-visual-img {
+    transition: transform 240ms var(--ease-out);
+  }
+
+  .group:hover .project-visual-img {
+    transform: scale(1.03);
+  }
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -66,12 +86,15 @@ body::before {
   }
 
   .reveal-block {
-    opacity: 1;
     transform: none;
-    transition: none;
+    transition: opacity 240ms var(--ease-out);
   }
 
-  .group:hover img {
+  .pressable,
+  .pressable:active,
+  .project-visual-img,
+  .group:hover .project-visual-img {
     transform: none;
+    transition: none;
   }
 }
