@@ -1,97 +1,44 @@
-import { useEffect, useRef, useState } from 'react'
-import RevealLayer from './RevealLayer'
-
-const BG_IMAGE_1 =
-  'https://images.higgs.ai/?default=1&output=webp&url=https%3A%2F%2Fd8j0ntlcm91z4.cloudfront.net%2Fuser_38xzZboKViGWJOttwIXH07lWA1P%2Fhf_20260609_195923_b0ba8ace-1d1d-4f2c-9a28-1ab84b330680.png&w=1280&q=85'
-
-const BG_IMAGE_2 =
-  'https://images.higgs.ai/?default=1&output=webp&url=https%3A%2F%2Fd8j0ntlcm91z4.cloudfront.net%2Fuser_38xzZboKViGWJOttwIXH07lWA1P%2Fhf_20260609_201152_bba90a12-bf12-459f-91f0-51f237dbaf3b.png&w=1280&q=85'
+import { imageSrc, site } from '../data/site'
 
 export default function Hero() {
-  const mouse = useRef({ x: -999, y: -999 })
-  const smooth = useRef({ x: -999, y: -999 })
-  const rafRef = useRef<number>(0)
-  const [cursorPos, setCursorPos] = useState({ x: -999, y: -999 })
-
-  useEffect(() => {
-    const onMouseMove = (e: MouseEvent) => {
-      mouse.current.x = e.clientX
-      mouse.current.y = e.clientY
-    }
-
-    const tick = () => {
-      smooth.current.x += (mouse.current.x - smooth.current.x) * 0.1
-      smooth.current.y += (mouse.current.y - smooth.current.y) * 0.1
-      setCursorPos({ x: smooth.current.x, y: smooth.current.y })
-      rafRef.current = requestAnimationFrame(tick)
-    }
-
-    window.addEventListener('mousemove', onMouseMove)
-    rafRef.current = requestAnimationFrame(tick)
-
-    return () => {
-      window.removeEventListener('mousemove', onMouseMove)
-      cancelAnimationFrame(rafRef.current)
-    }
-  }, [])
-
   return (
     <section
-      className="relative w-full overflow-hidden h-screen bg-black"
-      style={{ height: '100dvh' }}
+      id="top"
+      className="relative grid min-h-[100dvh] items-end overflow-hidden lg:grid-cols-[minmax(0,1.05fr)_minmax(0,0.95fr)]"
     >
-      <div
-        className="absolute inset-0 bg-center bg-cover bg-no-repeat z-10 hero-zoom"
-        style={{ backgroundImage: `url(${BG_IMAGE_1})` }}
-      />
-
-      <RevealLayer
-        image={BG_IMAGE_2}
-        cursorX={cursorPos.x}
-        cursorY={cursorPos.y}
-      />
-
-      <div className="absolute top-[14%] left-0 right-0 flex flex-col items-center text-center px-5 pointer-events-none z-50">
-        <h1 className="text-white leading-[0.95]">
-          <span
-            className="block font-playfair italic font-normal text-5xl sm:text-7xl md:text-8xl hero-anim hero-reveal"
-            style={{ letterSpacing: '-0.05em', animationDelay: '0.25s' }}
-          >
-            Layers hold
-          </span>
-          <span
-            className="block font-normal text-5xl sm:text-7xl md:text-8xl -mt-1 hero-anim hero-reveal"
-            style={{ letterSpacing: '-0.08em', animationDelay: '0.42s' }}
-          >
-            tales of time
-          </span>
+      <div className="relative z-10 flex flex-col justify-end px-5 pb-16 pt-28 sm:px-8 lg:px-12 lg:pb-24">
+        <h1 className="max-w-[14ch] font-display text-[clamp(3.1rem,9vw,6.4rem)] font-medium leading-[0.92] tracking-[-0.04em] text-[var(--paper)]">
+          {site.name}
         </h1>
-      </div>
-
-      <div
-        className="hidden sm:block absolute bottom-14 left-10 md:left-14 max-w-[260px] z-50 hero-anim hero-fade"
-        style={{ animationDelay: '0.7s' }}
-      >
-        <p className="text-sm text-white/80 leading-relaxed">
-          Every layer of sediment records a chapter of our planet, from ancient
-          seabeds to drifting ash, layered across millions of years beneath us.
+        <p className="mt-8 max-w-xl font-display text-[clamp(1.35rem,3vw,2rem)] leading-snug text-[var(--paper)]">
+          {site.headline}
         </p>
-      </div>
-
-      <div
-        className="absolute bottom-10 sm:bottom-24 left-5 right-5 sm:left-auto sm:right-10 md:right-14 max-w-full sm:max-w-[260px] flex flex-col items-start gap-4 sm:gap-5 z-50 hero-anim hero-fade"
-        style={{ animationDelay: '0.85s' }}
-      >
-        <p className="text-xs sm:text-sm text-white/80 leading-relaxed">
-          Our interactive maps let you peel back the crust to trace how stones,
-          fossils, and deep time combine to shape the ground beneath your feet.
+        <p className="mt-4 max-w-md text-[0.95rem] leading-relaxed text-[var(--mute)]">
+          {site.subtext}
         </p>
-        <button
-          type="button"
-          className="bg-[#e8702a] hover:bg-[#d2611f] text-white text-sm font-medium px-7 py-3 rounded-full transition-all hover:scale-[1.03] active:scale-95 hover:shadow-lg hover:shadow-[#e8702a]/30"
-        >
-          Start Digging
-        </button>
+        <div className="mt-10 flex flex-wrap gap-3">
+          <a
+            href="#work"
+            className="bg-[var(--lime)] px-5 py-2.5 font-mono text-[11px] uppercase tracking-[0.16em] text-[var(--ink)]"
+          >
+            View work
+          </a>
+          <a
+            href={`mailto:${site.email}`}
+            className="border border-[var(--line)] px-5 py-2.5 font-mono text-[11px] uppercase tracking-[0.16em] text-[var(--paper)] hover:border-[var(--lime)] hover:text-[var(--lime)]"
+          >
+            Email
+          </a>
+        </div>
+      </div>
+      <div className="hero-visual relative min-h-[42vh] lg:min-h-full">
+        <img
+          src={imageSrc('cuda-matrix-diagram.png')}
+          alt="CUDA tiled matrix multiply diagram"
+          className="absolute inset-0 h-full w-full object-cover object-left opacity-80"
+        />
+        <div className="hero-grain pointer-events-none absolute inset-0" />
+        <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-[var(--ink)] via-transparent to-[var(--ink)]/40 lg:bg-gradient-to-l" />
       </div>
     </section>
   )
