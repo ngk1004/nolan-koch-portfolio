@@ -8,7 +8,8 @@ This repo is a **React + Vite + TypeScript + Tailwind** recruiter-facing portfol
 - **Stack:** React 19, TypeScript, Vite, Tailwind CSS v4.
 - **Entry:** [`index.html`](index.html) → [`src/main.tsx`](src/main.tsx) → [`src/App.tsx`](src/App.tsx).
 - **Content registry:** [`src/data/site.ts`](src/data/site.ts) owns identity, research, projects, and stack.
-- **Sections:** SiteNav, Hero, Research, Work, Stack, Contact under [`src/components/`](src/components/).
+- **Sections:** SiteNav, Hero, Research, Experience, Work, Stack, Contact under [`src/components/`](src/components/).
+- **Work gallery:** [`src/components/AccordionGallery.tsx`](src/components/AccordionGallery.tsx) (React Bits–style GSAP accordion) driven by [`Work.tsx`](src/components/Work.tsx); supports image + metric panels.
 - **Assets:** project images in [`public/images/`](public/images/).
 - Previous static snapshot preserved in [`index.backup.html`](index.backup.html).
 - [`server.py`](server.py) serves `dist/` when built.
@@ -18,6 +19,7 @@ This repo is a **React + Vite + TypeScript + Tailwind** recruiter-facing portfol
 - Accent: `#d4ff58` on ink `#0b0a09`.
 - Recruiter scan path: name → NeurIPS proof → experience → selected work → stack → contact.
 - Resume PDF lives at [`public/Nolan-Koch-Resume.pdf`](public/Nolan-Koch-Resume.pdf).
+- Accordion motion: ~350ms, low tilt, lime accent bar — no neon glow.
 
 ### Run locally
 - `npm install` (first time)
