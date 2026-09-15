@@ -1,0 +1,179 @@
+export type ProjectId = string
+export type ProjectLane = 'agents' | 'data' | 'systems' | 'ml' | 'security' | 'web'
+
+export const PROJECT_LANES = [
+  'agents',
+  'data',
+  'systems',
+  'ml',
+  'security',
+  'web',
+] as const satisfies readonly ProjectLane[]
+
+export type Project = {
+  id: ProjectId
+  title: string
+  blurb: string
+  outcome: string
+  lane: ProjectLane
+  tags: string[]
+  href: string
+  image?: string
+}
+
+export type Research = {
+  title: string
+  venue: string
+  blurb: string
+  href?: string
+}
+
+export type SiteContent = {
+  name: string
+  role: string
+  headline: string
+  subtext: string
+  email: string
+  github: string
+  research: Research
+  projects: Project[]
+  stack: { group: string; items: string[] }[]
+}
+
+export function imageSrc(file: string): string {
+  return `${import.meta.env.BASE_URL}images/${file}`
+}
+
+export const site = {
+  name: 'Nolan Koch',
+  role: 'CS & Cybersecurity developer',
+  headline: 'Research that ships.',
+  subtext:
+    'CS & Cybersecurity developer shipping AI systems, automation, and GPU kernels.',
+  email: 'kochnolan376@gmail.com',
+  github: 'https://github.com/ngk1004',
+  research: {
+    title:
+      'Truth-Maintained Memory Agent: Proactive Quality Control for Reliable Long-Context Dialogue',
+    venue: 'NeurIPS 2025 · ResponsibleFM',
+    blurb:
+      'TMMA gates writes, scores complexity, and verifies claims across a four-tier memory so long-context LLMs keep less false memory.',
+    href: 'https://openreview.net/forum?id=n2oOEU1rf9',
+  },
+  projects: [
+    {
+      id: 'cuda',
+      title: 'CUDA matrix multiply',
+      blurb:
+        'Shared-memory tiled CUDA kernels for matrix multiply, with CPU and GPU baselines plus Nsight Compute profiles.',
+      outcome: '18× faster than NumPy on the tiled kernel',
+      lane: 'systems',
+      tags: ['CUDA', 'C++', 'GPU'],
+      href: 'https://github.com/ngk1004/CUDA-Parallel-Matrix-Multiplication',
+      image: 'cuda-matrix-diagram.png',
+    },
+    {
+      id: 'support-agent',
+      title: 'Autonomous support agent',
+      blurb:
+        'RAG agent with vector memory so replies stay tied to prior turns instead of a single prompt dump.',
+      outcome: 'Persistent recall across multi-turn support threads',
+      lane: 'agents',
+      tags: ['RAG', 'LLM', 'vector memory'],
+      href: 'https://github.com/ngk1004/Autonomous-support-agent-with-vector-memory',
+      image: 'proj-n8n-automation.png',
+    },
+    {
+      id: 'devsecops',
+      title: 'DevSecOps auto triage',
+      blurb:
+        'CI pipeline that scans, triages, and blocks risky findings before they merge.',
+      outcome: 'Security checks on every commit in the workflow',
+      lane: 'security',
+      tags: ['DevSecOps', 'CI', 'triage'],
+      href: 'https://github.com/ngk1004/DevSec-Ops-Auto-Triage-Pipeline-',
+      image: 'waf-screenshot1.png',
+    },
+    {
+      id: 'etl',
+      title: 'Nightly ETL pipeline',
+      blurb:
+        'Scheduled sync from legacy MySQL or CRM into HubSpot with validation and error handling.',
+      outcome: '50,000 customer records synced each night',
+      lane: 'data',
+      tags: ['ETL', 'MySQL', 'HubSpot'],
+      href: 'https://github.com/ngk1004/ETL-Pipeline',
+      image: 'proj-train-of-thought.png',
+    },
+    {
+      id: 'temporal-router',
+      title: 'Zero-Touch Temporal router',
+      blurb:
+        'Temporal workflows persist Stripe and Shopify orders, then retry warehouse calls when the API is down.',
+      outcome: 'Orders queue and ship after warehouse outages',
+      lane: 'systems',
+      tags: ['Temporal', 'TypeScript', 'Postgres'],
+      href: 'https://github.com/ngk1004/Zero-Touch-Employee-Provisioning',
+      image: 'proj-portfolio-website.png',
+    },
+    {
+      id: 'yolo-cv',
+      title: 'YOLO car detection',
+      blurb:
+        'YOLOv8n pipeline for cars and common objects in stills and video, with a Flask upload UI.',
+      outcome: 'Real-time detection on a lightweight nano model',
+      lane: 'ml',
+      tags: ['YOLOv8', 'OpenCV', 'Flask'],
+      href: 'https://github.com/ngk1004/Computer-Vision-Object-Detection',
+      image: 'car-detection.png',
+    },
+    {
+      id: 'inventory',
+      title: 'Inventory forecasting',
+      blurb:
+        'LSTM and Prophet demand models on retail sales history, trained for stock planning.',
+      outcome: 'Forecasts from raw sales history to SKU-level demand',
+      lane: 'ml',
+      tags: ['LSTM', 'Prophet', 'Python'],
+      href: 'https://github.com/ngk1004/Inventory-Demand-Forecasting',
+      image: 'proj-inventory-forecasting.png',
+    },
+  ],
+  stack: [
+    {
+      group: 'Languages',
+      items: ['TypeScript', 'Python', 'C++', 'CUDA', 'SQL'],
+    },
+    {
+      group: 'AI / ML',
+      items: ['PyTorch', 'YOLOv8', 'RAG', 'LSTM', 'Prophet'],
+    },
+    {
+      group: 'Systems',
+      items: ['Temporal', 'Postgres', 'Docker', 'n8n'],
+    },
+    {
+      group: 'Security',
+      items: ['CI scanning', 'triage pipelines', 'policy gates'],
+    },
+  ],
+} as const satisfies SiteContent
+
+export type ProjectFilter = 'all' | ProjectLane
+
+export function parseProjectId(raw: string | null): ProjectId | null {
+  if (raw === null || raw === '') return null
+  return site.projects.some((project) => project.id === raw) ? raw : null
+}
+
+export function projectsForLane(
+  projects: readonly Project[],
+  lane: ProjectFilter,
+): readonly Project[] {
+  if (lane === 'all') return projects
+  return projects.filter((project) => project.lane === lane)
+}
+
+export function isProjectLane(value: string): value is ProjectLane {
+  return (PROJECT_LANES as readonly string[]).includes(value)
+}
