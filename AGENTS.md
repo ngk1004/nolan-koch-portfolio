@@ -16,7 +16,8 @@ This repo is a **React + Vite + TypeScript + Tailwind** recruiter-facing portfol
 ### Design
 - Fonts: **Outfit** (UI/display), **IBM Plex Mono** (meta).
 - Accent: `#d4ff58` on ink `#0b0a09`.
-- Recruiter scan path: name → NeurIPS proof → selected work → stack → contact.
+- Recruiter scan path: name → NeurIPS proof → experience → selected work → stack → contact.
+- Resume PDF lives at [`public/Nolan-Koch-Resume.pdf`](public/Nolan-Koch-Resume.pdf).
 
 ### Run locally
 - `npm install` (first time)

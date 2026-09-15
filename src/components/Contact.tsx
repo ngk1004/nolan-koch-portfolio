@@ -1,4 +1,4 @@
-import { site } from '../data/site'
+import { resumeSrc, site } from '../data/site'
 import { useReveal } from '../hooks/useReveal'
 
 export default function Contact() {
@@ -16,15 +16,20 @@ export default function Contact() {
             Hire me for systems that have to work.
           </h2>
           <p className="mt-4 max-w-md text-[var(--mute)]">
-            Open for software roles, research collabs, and shipping work that has a GitHub trail.
+            {site.location}. Open for software, security, and AI roles.
           </p>
         </div>
         <div className="flex flex-col gap-3 font-mono text-sm">
-          <a
-            href={`mailto:${site.email}`}
-            className="text-[var(--lime)]"
-          >
+          <a href={`mailto:${site.email}`} className="text-[var(--lime)]">
             {site.email}
+          </a>
+          <a
+            href={resumeSrc()}
+            target="_blank"
+            rel="noreferrer"
+            className="text-[var(--paper)] hover:text-[var(--lime)]"
+          >
+            Download resume
           </a>
           <a
             href={site.github}
