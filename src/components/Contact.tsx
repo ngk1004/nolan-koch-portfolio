@@ -20,7 +20,7 @@ export default function Contact({ onOpenResume }: ContactProps) {
             Hire me for systems that have to work.
           </h2>
           <p className="mt-4 max-w-md text-[var(--mute)]">
-            {site.location}. Open for software, security, and AI roles.
+            {site.location}. Open to remote for software, security, and AI roles.
           </p>
         </div>
         <div className="flex flex-col gap-3 font-mono text-sm">
