@@ -25,42 +25,89 @@ const LANE_LABEL: Record<ProjectFilter, string> = {
   web: 'Web',
 }
 
-function AccordionMedia({ visual }: { visual: ProjectVisual }) {
-  switch (visual.kind) {
-    case 'image':
-      return (
-        <img
-          src={imageSrc(visual.src)}
-          alt={visual.alt}
-          draggable={false}
-          className="block h-full w-full select-none object-cover [-webkit-user-drag:none]"
-        />
-      )
-    case 'metric':
-      return (
-        <div className="flex h-full w-full flex-col justify-end bg-[var(--ink)] px-5 py-6">
-          <p className="font-display text-[clamp(2rem,5vw,3.2rem)] leading-none tracking-tight text-[var(--lime)]">
-            {visual.value}
-          </p>
-          <p className="mt-3 max-w-[16ch] font-mono text-[10px] uppercase tracking-[0.14em] text-[var(--mute)]">
-            {visual.label}
-          </p>
-        </div>
-      )
-    default: {
-      const _exhaustive: never = visual
-      return _exhaustive
-    }
-  }
+/** Stronger lane fills so thin accordion strips still read as color. */
+const LANE_PANEL: Record<Project['lane'], string> = {
+  agents:
+    'linear-gradient(160deg, color-mix(in srgb, #5eb8ff 42%, #0b0a09) 0%, #0f1a24 48%, #0b0a09 100%)',
+  data:
+    'linear-gradient(160deg, color-mix(in srgb, #ffb84a 40%, #0b0a09) 0%, #24180c 48%, #0b0a09 100%)',
+  systems:
+    'linear-gradient(160deg, color-mix(in srgb, #d4ff58 44%, #0b0a09) 0%, #1a220e 48%, #0b0a09 100%)',
+  ml:
+    'linear-gradient(160deg, color-mix(in srgb, #5dff9a 40%, #0b0a09) 0%, #0e2218 48%, #0b0a09 100%)',
+  security:
+    'linear-gradient(160deg, color-mix(in srgb, #ff6b4a 38%, #0b0a09) 0%, #26140f 48%, #0b0a09 100%)',
+  web:
+    'linear-gradient(160deg, color-mix(in srgb, #d4ff58 36%, #0b0a09) 0%, #1a220e 48%, #0b0a09 100%)',
+}
+
+const LANE_ACCENT: Record<Project['lane'], string> = {
+  agents: '#8fd4ff',
+  data: '#ffc15a',
+  systems: '#d4ff58',
+  ml: '#7dffb2',
+  security: '#ff8f74',
+  web: '#d4ff58',
+}
+
+function AccordionMedia({
+  visual,
+  lane,
+  title,
+}: {
+  visual: ProjectVisual
+  lane: Project['lane']
+  title: string
+}) {
+  const accent = LANE_ACCENT[lane]
+  const value = visual.kind === 'metric' ? visual.value : title
+  const caption = visual.kind === 'metric' ? visual.label : lane
+
+  return (
+    <div
+      className="relative flex h-full w-full flex-col justify-between px-4 py-5 sm:px-5 sm:py-6"
+      style={{ background: LANE_PANEL[lane] }}
+    >
+      <span
+        className="pointer-events-none absolute inset-y-0 left-0 w-1"
+        style={{ background: accent }}
+        aria-hidden="true"
+      />
+      <p
+        className="font-mono text-[10px] uppercase tracking-[0.18em]"
+        style={{ color: accent }}
+      >
+        {LANE_LABEL[lane]}
+      </p>
+      <div className="pb-12">
+        <p
+          className="font-display text-[clamp(2.4rem,6vw,4rem)] leading-[0.9] tracking-tight"
+          style={{ color: accent }}
+        >
+          {value}
+        </p>
+        <p className="mt-3 max-w-[18ch] font-mono text-[10px] uppercase tracking-[0.14em] text-[var(--paper)]/70">
+          {caption}
+        </p>
+      </div>
+    </div>
+  )
 }
 
 function toGalleryItem(project: Project): AccordionGalleryItem {
   return {
     id: project.id,
     label: project.title,
+    spine: LANE_LABEL[project.lane],
     link: project.href,
     alt: project.title,
-    media: <AccordionMedia visual={project.visual} />,
+    media: (
+      <AccordionMedia
+        visual={project.visual}
+        lane={project.lane}
+        title={project.title}
+      />
+    ),
   }
 }
 
@@ -154,14 +201,26 @@ export default function Work() {
           key={`${lane}-${galleryItems.map((item) => item.id).join('-')}`}
           items={galleryItems}
           defaultIndex={defaultIndex}
-          height={440}
+          height={400}
+          expandRatio={0.55}
           trigger="hover"
-          grayscale
+          grayscale={false}
+          tilt={0}
+          parallax={0}
           onActiveChange={(_index, item) => setActiveId(item.id)}
         />
 
         {activeProject && (
           <div className="border-t border-[var(--line)] p-5 sm:p-6">
+            {activeProject.shot && (
+              <div className="mb-6 overflow-hidden border border-[var(--line)]">
+                <img
+                  src={imageSrc(activeProject.shot.src)}
+                  alt={activeProject.shot.alt}
+                  className="max-h-64 w-full object-cover object-top sm:max-h-80"
+                />
+              </div>
+            )}
             <p className="font-mono text-[10px] uppercase tracking-[0.16em] text-[var(--mute)]">
               {isProjectLane(activeProject.lane)
                 ? LANE_LABEL[activeProject.lane]

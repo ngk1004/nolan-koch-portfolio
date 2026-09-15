@@ -15,10 +15,7 @@ export default function Hero({ onOpenResume }: HeroProps) {
         <h1 className="max-w-[14ch] font-display text-[clamp(3.1rem,9vw,6.4rem)] font-medium leading-[0.92] tracking-[-0.04em] text-[var(--paper)]">
           {site.name}
         </h1>
-        <p className="mt-8 max-w-xl font-display text-[clamp(1.35rem,3vw,2rem)] leading-snug text-[var(--paper)]">
-          {site.headline}
-        </p>
-        <p className="mt-4 max-w-md text-[0.95rem] leading-relaxed text-[var(--mute)]">
+        <p className="mt-8 max-w-md text-[0.95rem] leading-relaxed text-[var(--mute)]">
           {site.subtext}
         </p>
         <div className="mt-10 flex flex-wrap gap-3">

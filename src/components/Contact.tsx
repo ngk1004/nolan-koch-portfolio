@@ -16,10 +16,7 @@ export default function Contact({ onOpenResume }: ContactProps) {
     >
       <div className="mx-auto flex max-w-6xl flex-col gap-8 px-5 py-24 sm:px-8 lg:flex-row lg:items-end lg:justify-between">
         <div>
-          <h2 className="font-display text-[clamp(2rem,5vw,3.4rem)] tracking-tight text-[var(--paper)]">
-            Hire me for systems that have to work.
-          </h2>
-          <p className="mt-4 max-w-md text-[var(--mute)]">
+          <p className="max-w-md text-[var(--mute)]">
             {site.location}. Open to remote for software, security, and AI roles.
           </p>
         </div>

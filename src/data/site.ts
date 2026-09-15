@@ -23,6 +23,8 @@ export type Project = {
   tags: string[]
   href: string
   visual: ProjectVisual
+  /** Optional still shown under the accordion detail strip. */
+  shot?: { src: string; alt: string }
 }
 
 export type Research = {
@@ -52,7 +54,6 @@ export type Education = {
 export type SiteContent = {
   name: string
   role: string
-  headline: string
   subtext: string
   location: string
   email: string
@@ -77,7 +78,6 @@ export function resumeSrc(): string {
 export const site = {
   name: 'Nolan Koch',
   role: 'Cybersecurity & software developer',
-  headline: 'Research that ships.',
   subtext:
     'Pittsburgh-based cybersecurity student shipping full-stack products, GPU systems, and secure automation.',
   location: 'Pittsburgh, PA',
@@ -189,9 +189,9 @@ export const site = {
       lane: 'security',
       tags: ['DevSecOps', 'CI', 'triage'],
       href: 'https://github.com/ngk1004/DevSec-Ops-Auto-Triage-Pipeline-',
-      visual: {
-        kind: 'image',
-        src: 'waf-screenshot1.png',
+      visual: { kind: 'metric', value: '4/4', label: 'injection patterns blocked' },
+      shot: {
+        src: 'waf-accordion.png',
         alt: 'DevSecOps WAF triage demo UI with blocked findings',
       },
     },
@@ -226,9 +226,9 @@ export const site = {
       lane: 'ml',
       tags: ['YOLOv8', 'OpenCV', 'Flask'],
       href: 'https://github.com/ngk1004/Computer-Vision-Object-Detection',
-      visual: {
-        kind: 'image',
-        src: 'car-detection.png',
+      visual: { kind: 'metric', value: 'YOLOv8', label: 'cars · people · objects' },
+      shot: {
+        src: 'yolo-accordion.png',
         alt: 'YOLO bounding boxes on cars in a street photo',
       },
     },
